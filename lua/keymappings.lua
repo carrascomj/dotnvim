@@ -11,6 +11,9 @@ vim.cmd([[
   noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
   noremap <C-J> a<CR><Esc>k$
 	noremap <C-q> :lua require('lv-telescope').fdsbml()<CR>
+
+	vnoremap <C-y> "*y :let @+=@*<CR>
+  map <C-p> "+P
 ]])
 
 -- telescope

@@ -1,6 +1,7 @@
 vim.cmd('set iskeyword+=-') -- treat dash separated words as a word text object"
 vim.cmd('set shortmess+=c') -- Don't pass messages to |ins-completion-menu|.
 vim.cmd('set nofoldenable') -- Make substitution work in realtime
+vim.cmd('set nohlsearch') -- Don't pollute the screen with yellow (/)
 vim.cmd('set incsearch') -- Make substitution work in realtime
 vim.cmd('set noswapfile')
 vim.cmd('set smarttab')
@@ -8,7 +9,7 @@ vim.o.termguicolors = true -- set term giu colors most terminals support this
 vim.o.hidden = O.hidden_files -- Required to keep multiple buffers open multiple buffers
 vim.o.updatetime = 300 -- Faster completion
 vim.o.timeoutlen = 100 -- By default timeoutlen is 1000 ms
-vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
+-- vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.wo.number = O.number -- set numbered lines
 vim.wo.relativenumber = O.relative_number -- set relative number
 vim.cmd("set cindent")
