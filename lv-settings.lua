@@ -9,7 +9,7 @@ an executable
 
 -- general
 O.auto_complete = true
-O.colorscheme = 'lunar'
+O.colorscheme = 'one'
 O.auto_close_tree = 0
 O.wrap_lines = false
 
@@ -27,10 +27,10 @@ O.clang.diagnostics.underline = false
 -- add things like O.python.formatter.yapf.exec_path
 -- add things like O.python.linter.flake8.exec_path
 -- add things like O.python.formatter.isort.exec_path
-O.python.formatter = 'yapf'
--- O.python.linter = 'flake8'
+O.python.formatter = 'black'
+O.python.linter = 'flake8'
 O.python.isort = true
-O.python.autoformat = true
+O.python.autoformat = false
 O.python.diagnostics.virtual_text = true
 O.python.diagnostics.signs = true
 O.python.diagnostics.underline = true

@@ -32,21 +32,23 @@ vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when th
 
 return require("packer").startup(
     function(use)
+        -- Color
+        use "rakr/vim-one"
+        use 'junegunn/rainbow_parentheses.vim'
+        use 'norcalli/nvim-colorizer.lua'
+
         -- Packer can manage itself as an optional plugin
         use "wbthomason/packer.nvim"
 
-        -- TODO refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
         use {"neovim/nvim-lspconfig", opt = true}
         use {"glepnir/lspsaga.nvim", opt = true}
         use {"kabouzeid/nvim-lspinstall", opt = true}
 
-        -- Tlescope
+        -- Telescope
         use {"nvim-lua/popup.nvim", opt = true}
         use {"nvim-lua/plenary.nvim", opt = true}
         use {"nvim-telescope/telescope.nvim", opt = true}
-
-        -- Dbugging
-        use {"mfussenegger/nvim-dap", opt = true}
+				use 'nvim-telescope/telescope-fzy-native.nvim'
 
         -- Atocomplete
         use {"hrsh7th/nvim-compe", opt = true}
@@ -55,30 +57,19 @@ return require("packer").startup(
 
         -- Teesitter
         use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
-        use {"windwp/nvim-ts-autotag", opt = true}
-
-        -- Eplorer
-        use "kyazdani42/nvim-tree.lua"
-        -- TODO remove when open on dir is supported by nvimtree
-        use "kevinhwang91/rnvimr"
 
         -- use {'lukas-reineke/indent-blankline.nvim', opt=true, branch = 'lua'}
         use {"lewis6991/gitsigns.nvim", opt = true}
-        use {"liuchengxu/vim-which-key", opt = true}
-        use {"ChristianChiarulli/dashboard-nvim", opt = true}
-        use {"windwp/nvim-autopairs", opt = true}
         use {"terrortylor/nvim-comment", opt = true}
         use {"kevinhwang91/nvim-bqf", opt = true}
 
-        -- Color
-        use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
-
-        -- Icons
-        use {"kyazdani42/nvim-web-devicons", opt = true}
+        -- Surround
+        use 'tpope/vim-surround'
 
         -- Status Line and Bufferline
-        use {"glepnir/galaxyline.nvim", opt = true}
-        use {"romgrk/barbar.nvim", opt = true}
+        use "glepnir/galaxyline.nvim"
+        use "romgrk/barbar.nvim"
+        use {"kyazdani42/nvim-web-devicons", opt = true}
 
         require_plugin("nvim-lspconfig")
         require_plugin("lspsaga.nvim")
@@ -90,16 +81,10 @@ return require("packer").startup(
         require_plugin("nvim-compe")
         require_plugin("vim-vsnip")
         require_plugin("nvim-treesitter")
-        require_plugin("nvim-ts-autotag")
-        require_plugin("nvim-tree.lua")
+        require_plugin("nvim-web-devicons")
         require_plugin("gitsigns.nvim")
-        require_plugin("vim-which-key")
-        require_plugin("dashboard-nvim")
-        require_plugin("nvim-autopairs")
         require_plugin("nvim-comment")
         require_plugin("nvim-bqf")
-        require_plugin("nvcode-color-schemes.vim")
-        require_plugin("nvim-web-devicons")
         require_plugin("galaxyline.nvim")
         require_plugin("barbar.nvim")
     end

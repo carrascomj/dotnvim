@@ -13,7 +13,7 @@ local flake8 = {
 local isort = {formatCommand = "isort --quiet -", formatStdin = true}
 
 local yapf = {formatCommand = "yapf --quiet", formatStdin = true}
-local black = {formatCommand = "black --quiet --stdin-filename ", formatStdin = true}
+local black = {formatCommand = "black --quiet -", formatStdin = true}
 
 if O.python.linter == 'flake8' then table.insert(python_arguments, flake8) end
 
