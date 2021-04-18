@@ -3,27 +3,27 @@ local gl = require('galaxyline')
 -- local colors = require('galaxyline.theme').default
 local colors = {
     -- bg = '#2E2E2E',
-    bg = '#292D38',
-    yellow = '#DCDCAA',
+    bg = '#1e2127',
+    yellow = '#d19a66',
     dark_yellow = '#D7BA7D',
-    cyan = '#4EC9B0',
-    green = '#608B4E',
+    cyan = '#56b6c2',
+    green = '#98c379',
     light_green = '#B5CEA8',
     string_orange = '#CE9178',
     orange = '#FF8800',
-    purple = '#C586C0',
+    purple = '#c678dd',
     magenta = '#D16D9E',
-    grey = '#858585',
-    blue = '#569CD6',
+    grey = '#5c6370',
+    blue = '#61afef',
     vivid_blue = '#4FC1FF',
     light_blue = '#9CDCFE',
-    red = '#D16969',
+    red = '#e06c75',
     error_red = '#F44747',
     info_yellow = '#FFCC66'
 }
 local condition = require('galaxyline.condition')
 local gls = gl.section
-gl.short_line_list = {'NvimTree', 'vista', 'dbui', 'packer'}
+gl.short_line_list = {'vista', 'dbui', 'packer'}
 
 gls.left[1] = {
     ViMode = {
@@ -51,10 +51,20 @@ gls.left[1] = {
                 ['!'] = colors.blue,
                 t = colors.blue
             }
-            vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color[vim.fn.mode()])
-            return '▊ '
+            local mode_name = {
+                n = "NORMAL",
+                i = "INSERT",
+                c = "COMMAND",
+                v = "VISUAL",
+                [''] = "V-BLOCK",
+                V = "V-LINE",
+						}
+						local mode = vim.fn.mode()
+						local display = mode_name[mode] and mode_name[mode] or mode
+            vim.api.nvim_command('hi GalaxyViMode guibg=' .. mode_color[mode])
+            return '▊ ' .. display .. " "
         end,
-        highlight = {colors.red, colors.bg}
+        highlight = {colors.bg, colors.bg, "bold"}
     }
 }
 print(vim.fn.getbufvar(0, 'ts'))
@@ -63,7 +73,7 @@ vim.fn.getbufvar(0, 'ts')
 gls.left[2] = {
     GitIcon = {
         provider = function()
-            return ' '
+            return '  '
         end,
         condition = condition.check_git_workspace,
         separator = ' ',
