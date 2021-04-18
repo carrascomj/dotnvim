@@ -25,17 +25,8 @@ elseif O.python.formatter == 'black' then
     table.insert(python_arguments, black)
 end
 
--- lua
-local lua_arguments = {}
-local luaFormat = {
-    formatCommand = "lua-format -i --no-keep-simple-function-one-line --column-limit=120",
-    formatStdin = true
-}
-
-if O.lua.formatter == 'lua-format' then table.insert(lua_arguments, luaFormat) end
-
--- sh
 local sh_arguments = {}
+
 
 local shfmt = {formatCommand = 'shfmt -ci -s -bn', formatStdin = true}
 
@@ -80,14 +71,13 @@ local markdownPandocFormat = {formatCommand = 'pandoc -f markdown -t gfm -sp --t
 
 require"lspconfig".efm.setup {
     -- init_options = {initializationOptions},
-    cmd = {DATA_PATH .. "/lspinstall/efm/efm-langserver"},
+    cmd = {"efm-langserver"},
     init_options = {documentFormatting = true, codeAction = false},
     filetypes = {"lua", "python", "javascriptreact", "javascript", "sh", "html", "css", "json", "yaml", "markdown"},
     settings = {
         rootMarkers = {".git/"},
         languages = {
             python = python_arguments,
-            lua = lua_arguments,
             sh = sh_arguments,
             javascript = tsserver_args,
             javascriptreact = tsserver_args,
