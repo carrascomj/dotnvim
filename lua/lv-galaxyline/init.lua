@@ -13,7 +13,7 @@ local colors = {
     orange = '#FF8800',
     purple = '#c678dd',
     magenta = '#D16D9E',
-    grey = '#5c6370',
+    grey = '#9da5b4',
     blue = '#61afef',
     vivid_blue = '#4FC1FF',
     light_blue = '#9CDCFE',
@@ -104,8 +104,8 @@ gls.left[5] = {
     DiffModified = {
         provider = 'DiffModified',
         condition = condition.hide_in_width,
-        icon = ' 柳',
-        highlight = {colors.blue, colors.bg}
+        icon = ' ',
+        highlight = {colors.dark_yellow, colors.bg}
     }
 }
 gls.left[6] = {
@@ -137,7 +137,7 @@ gls.right[5] = {
             return true
         end,
         icon = ' ',
-        highlight = {colors.grey, colors.bg}
+        highlight = {colors.magenta, colors.bg}
     }
 }
 
@@ -177,7 +177,7 @@ gls.right[9] = {
         condition = condition.hide_in_width,
         separator = ' ',
         separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.grey, colors.bg}
+        highlight = {colors.magenta, colors.bg}
     }
 }
 
