@@ -72,33 +72,59 @@ require('telescope').setup {
 }
 require('telescope').load_extension('fzy_native')
 
+-- Insert a line and close the Telescope window
+local function insert_line_with(line, prompt_bufnr, mode)
+	-- disable autopairs so it doesn't get crazy with the ("
+	mode = mode or "o"
+	require('nvim-autopairs').disable()
+	vim.api.nvim_set_var("matched", line)
+	print(line)
+	actions.close(prompt_bufnr)
+	vim.cmd([[exe "normal! ]] .. mode .. [[" . matched]])
+	require('nvim-autopairs').enable()
+end
+
 local M = {}
 -- show a fuzzy summary of a SBML file at root_dir .. @"
 M.fdsbml = function()
 	-- copy register (Yanked) to variable
 	vim.cmd([[let xxx=@"]])
-	print(vim.fn.getcwd() .. "/" .. vim.g.xxx)
+	local model_file
+	require('plenary.job'):new({
+		command = "fd", cwd=vim.fn.getcwd(),
+		args = {"-F", "-p", vim.g.xxx},
+		on_exit= function(j, _)
+			model_file = j:result()[1]
+		end
+	}):sync()
+	-- Show on the status the file that we took
+	print(model_file)
 	require('telescope.pickers').new {
+		prompt_prefix = " ",
 		finder = require('telescope.finders').new_oneshot_job(
-			{'fdsbml', vim.fn.getcwd() .. "/" .. vim.g.xxx}
+			{ 'fdsbml', model_file }
 		),
 		results_title = 'SBML summary',
-		sorter = require('telescope.sorters').get_fuzzy_file(),
+		sorter = require('telescope.sorters').get_fzy_sorter(),
 		attach_mappings = function(prompt_bufnr, map)
+			-- On enter, insert cobrapy-like accession on the next line
 			map('i', '<CR>', function(bufnr)
 				local content = require('telescope.actions.state').get_selected_entry(bufnr)
 				local match = content.value:match([[ ([a-zA-Z0-9_-]+): ]])
-				if (match:match("^R_")) then
+				if (content.value:match([[Reaction]])) then
 					match = [[model.reactions.get_by_id("]] .. match:sub(3) .. [[")]]
 					elseif (match:match("prot_")) then
 					match = [[model.proteins.get_by_id("]] .. match:sub(3) .. [[")]]
 					elseif (match:match("^M_")) then
 					match = [[model.metabolites.get_by_id("]] .. match:sub(3) .. [[")]]
 				end
-				vim.api.nvim_set_var("matched", match)
-				print(match)
-				actions.close(prompt_bufnr)
-				vim.cmd([[exe "normal! a" . matched "\<Esc>"]])
+				insert_line_with(match, prompt_bufnr)
+			end)
+			-- On Ctrl-i, insert just the identifier
+			map('i', '<C-i>', function(bufnr)
+				local content = require('telescope.actions.state').get_selected_entry(bufnr)
+				local match = content.value:match([[ ([a-zA-Z0-9_-]+): ]])
+				insert_line_with(match:sub(3), prompt_bufnr, "a")
 			end)
 			return true
 		end
