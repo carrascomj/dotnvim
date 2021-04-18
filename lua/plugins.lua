@@ -40,6 +40,7 @@ return require("packer").startup(
         -- Packer can manage itself as an optional plugin
         use "wbthomason/packer.nvim"
 
+				-- Lsp
         use {"neovim/nvim-lspconfig", opt = true}
         use {"glepnir/lspsaga.nvim", opt = true}
         use {"kabouzeid/nvim-lspinstall", opt = true}
@@ -50,10 +51,11 @@ return require("packer").startup(
         use {"nvim-telescope/telescope.nvim", opt = true}
 				use 'nvim-telescope/telescope-fzy-native.nvim'
 
-        -- Atocomplete
+        -- Autocomplete
         use {"hrsh7th/nvim-compe", opt = true}
         use {"hrsh7th/vim-vsnip", opt = true}
         use {"rafamadriz/friendly-snippets", opt = true}
+				use "windwp/nvim-autopairs"
 
         -- Teesitter
         use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
@@ -80,6 +82,7 @@ return require("packer").startup(
         require_plugin("nvim-dap")
         require_plugin("nvim-compe")
         require_plugin("vim-vsnip")
+        require_plugin("nvim-autopairs")
         require_plugin("nvim-treesitter")
         require_plugin("nvim-web-devicons")
         require_plugin("gitsigns.nvim")
