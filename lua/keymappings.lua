@@ -18,7 +18,7 @@ vim.cmd([[
 
 -- telescope
 vim.api.nvim_set_keymap('', '<C-f>', ':Telescope fd<CR>', {noremap = false})
-vim.api.nvim_set_keymap('', '<C-g>', ':Telescope grep_string<CR>', {noremap = false})
+vim.api.nvim_set_keymap('', '<C-g>', [[:lua require'telescope.builtin'.live_grep({prompt_prefix="﫿"})<CR>]], {noremap = false})
 vim.api.nvim_set_keymap('', 'Ñ', [[<Cmd>lua vim.lsp.buf.formatting()<CR>]], {noremap = false, silent=true})
 -- vim.api.nvim_set_keymap('', '<leader>g', ':Telescope grep_string<CR>', {noremap = false})
 
