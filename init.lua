@@ -2,7 +2,6 @@ vim.g.mapleader = ' '
 
 require('plugins')
 require('lv-globals')
-require('lv-utils')
 vim.cmd('luafile ~/.config/nvim/lv-settings.lua')
 require('lv-autocommands')
 require('settings')
