@@ -36,6 +36,7 @@ return require("packer").startup(
         use "rakr/vim-one"
         use 'junegunn/rainbow_parentheses.vim'
         use 'norcalli/nvim-colorizer.lua'
+				use 'cespare/vim-toml'
 
         -- Packer can manage itself as an optional plugin
         use "wbthomason/packer.nvim"
