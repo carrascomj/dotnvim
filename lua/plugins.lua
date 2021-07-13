@@ -34,23 +34,27 @@ return require("packer").startup(
     function(use)
         -- Color
         use "rakr/vim-one"
-        use 'junegunn/rainbow_parentheses.vim'
-        use 'norcalli/nvim-colorizer.lua'
-				use 'cespare/vim-toml'
+        use "junegunn/rainbow_parentheses.vim"
+        use "norcalli/nvim-colorizer.lua"
+				use "cespare/vim-toml"
 
         -- Packer can manage itself as an optional plugin
         use "wbthomason/packer.nvim"
 
 				-- Lsp
         use {"neovim/nvim-lspconfig", opt = true}
-        use {"glepnir/lspsaga.nvim", opt = true}
         use {"kabouzeid/nvim-lspinstall", opt = true}
+				-- out-of-spec LSP (mainly for prose lintere)
+        use "jose-elias-alvarez/null-ls.nvim"
 
         -- Telescope
         use {"nvim-lua/popup.nvim", opt = true}
         use {"nvim-lua/plenary.nvim", opt = true}
         use {"nvim-telescope/telescope.nvim", opt = true}
-				use 'nvim-telescope/telescope-fzy-native.nvim'
+				use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
+
+				-- Harpoon strange choice of the year
+				use "ThePrimeagen/harpoon"
 
         -- Autocomplete
         use {"hrsh7th/nvim-compe", opt = true}
@@ -60,6 +64,9 @@ return require("packer").startup(
 
         -- Teesitter
         use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+
+				-- colorscheme
+        use "joshdick/onedark.vim"
 
         -- use {'lukas-reineke/indent-blankline.nvim', opt=true, branch = 'lua'}
         use {"lewis6991/gitsigns.nvim", opt = true}

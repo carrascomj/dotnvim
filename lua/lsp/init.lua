@@ -1,16 +1,9 @@
--- Override Vim one WarningMsg
-vim.cmd([[highlight! WarningMsg guifg='#d19a66']])
+-- Override virtual text in onedark.vim with dimmer colors
 vim.cmd([[highlight! VWarn guifg='#77765c']])
 vim.cmd([[highlight! VError guifg='#885c5c']])
 vim.cmd([[highlight! VHint guifg='#745675']])
 vim.cmd([[highlight! VInfo guifg='#5c7776']])
--- Vim one does not have these Lsp stuff
-vim.cmd('highlight! link LspDiagnosticsDefaultError Comment')
-vim.cmd('highlight! link LspDiagnosticsErrorSing ErrorMsg')
-vim.cmd('highlight! link LspDiagnosticsSignError Error')
-vim.cmd('highlight! link LspDiagnosticsSignWarning WarningMsg')
-vim.cmd('highlight! link LspDiagnosticsSignHint Special')
-vim.cmd('highlight! link LspDiagnosticsSignInformation Special')
+
 vim.cmd('highlight! link LspDiagnosticsVirtualTextError VError')
 vim.cmd('highlight! link LspDiagnosticsVirtualTextWarning VWarn')
 vim.cmd('highlight! link LspDiagnosticsVirtualTextHint VHint')
@@ -32,19 +25,16 @@ vim.fn.sign_define(
     {texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation"}
 )
 
-vim.cmd("nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>")
-vim.cmd("nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>")
-vim.cmd("nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>")
-vim.cmd("nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>")
-vim.cmd("nnoremap <silent> gc :Lspsaga code_action<CR>")
-vim.cmd("nnoremap <silent> K :Lspsaga hover_doc<CR>")
--- vim.cmd('nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>')
-vim.cmd("nnoremap <silent> gb :Lspsaga diagnostic_jump_prev<CR>")
-vim.cmd("nnoremap <silent> gv :Lspsaga diagnostic_jump_next<CR>")
--- scroll down hover doc or scroll in definition preview
-vim.cmd("nnoremap <silent> <C-k> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>")
--- scroll up hover doc
-vim.cmd("nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>")
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'gv', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'gb', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+vim.api.nvim_set_keymap('n', ';', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
 
 -- symbols for autocomplete

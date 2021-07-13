@@ -68,11 +68,22 @@ if O.tsserver.linter == 'eslint' then table.insert(tsserver_args, eslint) end
 -- }
 
 local markdownPandocFormat = {formatCommand = 'pandoc -f markdown -t gfm -sp --tab-stop=2', formatStdin = true}
+local root_files = {
+  'setup.py',
+  'pyproject.toml',
+  'setup.cfg',
+  'requirements.txt',
+  '.git',
+}
 
 require"lspconfig".efm.setup {
     -- init_options = {initializationOptions},
     cmd = {"efm-langserver"},
-    init_options = {documentFormatting = true, codeAction = false},
+    init_options = {documentFormatting = true, codeAction = true},
+		root_dir = function(filename)
+			return require("lspconfig").util.root_pattern(unpack(root_files))(filename) or
+             require("lspconfig").util.path.dirname(filename)
+		end,
     filetypes = {"lua", "python", "javascriptreact", "javascript", "sh", "html", "css", "json", "yaml", "markdown"},
     settings = {
         rootMarkers = {".git/"},
