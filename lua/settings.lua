@@ -5,10 +5,10 @@ vim.cmd('set nohlsearch') -- Don't pollute the screen with yellow (/)
 vim.cmd('set incsearch') -- Make substitution work in realtime
 vim.cmd('set noswapfile')
 vim.cmd('set smarttab')
-vim.o.termguicolors = true -- set term giu colors most terminals support this
+vim.go.termguicolors = true -- set term giu colors most terminals support this
 vim.o.hidden = O.hidden_files -- Required to keep multiple buffers open multiple buffers
 vim.o.updatetime = 300 -- Faster completion
-vim.o.timeoutlen = 100 -- By default timeoutlen is 1000 ms
+vim.o.timeoutlen = 200 -- By default timeoutlen is 1000 ms
 -- vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.wo.number = O.number -- set numbered lines
 vim.wo.relativenumber = O.relative_number -- set relative number
@@ -17,6 +17,8 @@ vim.cmd("set tabstop=2")
 vim.cmd("set shiftwidth=2")
 -- always uses spaces instead of tab characters
 vim.bo.expandtab = true -- Converts tabs to spaces
+-- for compe
+vim.o.completeopt = "menuone,noselect"
 
 -- infinite undo history
 vim.cmd([[
@@ -42,7 +44,7 @@ vim.o.cmdheight = 2 -- More space for displaying messages
 vim.o.mouse = "a" -- Enable your mouse
 vim.o.splitbelow = true -- Horizontal splits will automatically be below
 vim.o.splitright = true -- Vertical splits will automatically be to the right
-vim.o.t_Co = "256" -- Support 256 colors
+vim.go.t_Co = "256" -- Support 256 colors
 vim.o.conceallevel = 0 -- So that I can see `` in markdown files
 vim.bo.smartindent = true -- Makes indenting smart
 vim.wo.cursorline = true -- Enable highlighting of the current line
