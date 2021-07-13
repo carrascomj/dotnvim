@@ -11,6 +11,7 @@ vim.cmd([[
   noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
   noremap <C-J> a<CR><Esc>k$
 	noremap <C-q> :lua require('lv-telescope').fdsbml()<CR>
+	nnoremap <C-n> :lua require('lv-telescope').bib()<CR>
 
 	vnoremap <C-y> "*y :let @+=@*<CR>
   map <C-p> "+P
@@ -20,7 +21,9 @@ vim.cmd([[
 vim.api.nvim_set_keymap('', '<C-f>', ':Telescope fd<CR>', {noremap = false})
 vim.api.nvim_set_keymap('', '<C-g>', [[:lua require'telescope.builtin'.live_grep({prompt_prefix="﫿"})<CR>]], {noremap = false})
 vim.api.nvim_set_keymap('', 'Ñ', [[<Cmd>lua vim.lsp.buf.formatting()<CR>]], {noremap = false, silent=true})
--- vim.api.nvim_set_keymap('', '<leader>g', ':Telescope grep_string<CR>', {noremap = false})
+
+-- harpoon: clear list and mark current file
+vim.api.nvim_set_keymap('n', 'Ç', [[:lua require'harpoon.mark'.clear_all() require'harpoon.mark'.add_file()<CR>]], {noremap=false, silent=false})
 
 -- better indenting
 vim.api.nvim_set_keymap('v', '<', '<gv', {noremap = true, silent = true})
@@ -38,7 +41,7 @@ vim.api.nvim_set_keymap('x', 'K', ':move \'<-2<CR>gv-gv', {noremap = true, silen
 vim.api.nvim_set_keymap('x', 'J', ':move \'>+1<CR>gv-gv', {noremap = true, silent = true})
 
 -- Format
--- vim.api.nvim_set_keymap('', "¡", ':w! \| !compiler "<c-r>%"<CR>')
+vim.api.nvim_set_keymap('', "¡", ':w! | !compiler "<c-r>%"<CR>', {noremap = true, silent = true})
 
 -- Better nav for omnicomplete
 vim.cmd('inoremap <expr> <c-j> (\"\\<C-n>\")')
