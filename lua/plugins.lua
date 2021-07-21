@@ -33,10 +33,9 @@ vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when th
 return require("packer").startup(
     function(use)
         -- Color
-        use "rakr/vim-one"
         use "junegunn/rainbow_parentheses.vim"
         use "norcalli/nvim-colorizer.lua"
-				use "cespare/vim-toml"
+				use {"cespare/vim-toml", ft="toml"}
 
         -- Packer can manage itself as an optional plugin
         use "wbthomason/packer.nvim"
@@ -45,7 +44,16 @@ return require("packer").startup(
         use {"neovim/nvim-lspconfig", opt = true}
         use {"kabouzeid/nvim-lspinstall", opt = true}
 				-- out-of-spec LSP (mainly for prose lintere)
-        use "jose-elias-alvarez/null-ls.nvim"
+        use {"jose-elias-alvarez/null-ls.nvim",
+					  ft={"markdown", "txt", "tex"},
+			      config=function ()
+							local null_ls = require("null-ls")
+							local sources = {
+									null_ls.builtins.diagnostics.vale.with({filetypes={"markdown", "txt", "tex"}}),
+							}
+							null_ls.setup {sources = sources}
+						end
+    		}
 
         -- Telescope
         use {"nvim-lua/popup.nvim", opt = true}
@@ -59,11 +67,12 @@ return require("packer").startup(
         -- Autocomplete
         use {"hrsh7th/nvim-compe", opt = true}
         use {"hrsh7th/vim-vsnip", opt = true}
-        use {"rafamadriz/friendly-snippets", opt = true}
+        -- use {"rafamadriz/friendly-snippets", opt = true}
 				use "windwp/nvim-autopairs"
 
         -- Teesitter
         use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+				use "nvim-treesitter/nvim-treesitter-textobjects"
 
 				-- colorscheme
         use "joshdick/onedark.vim"
@@ -71,7 +80,7 @@ return require("packer").startup(
         -- use {'lukas-reineke/indent-blankline.nvim', opt=true, branch = 'lua'}
         use {"lewis6991/gitsigns.nvim", opt = true}
         use {"terrortylor/nvim-comment", opt = true}
-        use {"kevinhwang91/nvim-bqf", opt = true}
+        -- use {"kevinhwang91/nvim-bqf", opt = true}
 
         -- Surround
         use 'tpope/vim-surround'
@@ -95,7 +104,7 @@ return require("packer").startup(
         require_plugin("nvim-web-devicons")
         require_plugin("gitsigns.nvim")
         require_plugin("nvim-comment")
-        require_plugin("nvim-bqf")
+        -- require_plugin("nvim-bqf")
         require_plugin("galaxyline.nvim")
         require_plugin("barbar.nvim")
     end
