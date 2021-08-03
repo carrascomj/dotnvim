@@ -60,7 +60,7 @@ return require("packer").startup(
         use {"nvim-lua/plenary.nvim", opt = true}
         use {"nvim-telescope/telescope.nvim", opt = true}
 				use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
-
+				use {"nvim-telescope/telescope-fzf-writer.nvim"}
 				-- Harpoon strange choice of the year
 				use "ThePrimeagen/harpoon"
 
@@ -73,6 +73,7 @@ return require("packer").startup(
         -- Teesitter
         use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
 				use "nvim-treesitter/nvim-treesitter-textobjects"
+				-- use "nvim-treesitter/playground"
 
 				-- colorscheme
         use "joshdick/onedark.vim"
@@ -83,7 +84,7 @@ return require("packer").startup(
         -- use {"kevinhwang91/nvim-bqf", opt = true}
 
         -- Surround
-        use 'tpope/vim-surround'
+        use "tpope/vim-surround"
 
         -- Status Line and Bufferline
         use "glepnir/galaxyline.nvim"
@@ -91,7 +92,6 @@ return require("packer").startup(
         use {"kyazdani42/nvim-web-devicons", opt = true}
 
         require_plugin("nvim-lspconfig")
-        require_plugin("lspsaga.nvim")
         require_plugin("nvim-lspinstall")
         require_plugin("popup.nvim")
         require_plugin("plenary.nvim")

@@ -19,7 +19,7 @@ vim.cmd([[
 
 -- telescope
 vim.api.nvim_set_keymap('', '<C-f>', ':Telescope fd<CR>', {noremap = false})
-vim.api.nvim_set_keymap('', '<C-g>', [[:lua require'telescope.builtin'.live_grep({prompt_prefix="﫿"})<CR>]], {noremap = false})
+vim.api.nvim_set_keymap('', '<C-g>', [[:luado require('telescope').extensions.fzf_writer.staged_grep({prompt_title="RGrep"})<CR>]], {noremap = false})
 vim.api.nvim_set_keymap('', 'Ñ', [[<Cmd>lua vim.lsp.buf.formatting()<CR>]], {noremap = false, silent=true})
 
 -- harpoon: clear list and mark current file
