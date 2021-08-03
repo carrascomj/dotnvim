@@ -1,6 +1,8 @@
-This is a forked and stripped version of [LunarVim](https://github.com/ChristianChiarulli/LunarVim/blob/master/LICENSE).
-
 # dotnvim
 
-My neovim config for the unreleased 0.5.
-I'll add some documentation here at some point.
+My neovim config (0.5).
+
+The plugins are managed by [packer](https://github.com/wbthomason/packer.nvim)
+and can be installed by `:PackerInstall`.
+
+> Based in [LunarVim](https://github.com/ChristianChiarulli/LunarVim/blob/master/LICENSE).
