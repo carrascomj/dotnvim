@@ -76,7 +76,12 @@ require('telescope').setup {
                 ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
                 -- ["<C-i>"] = my_cool_custom_action,
             }
-        }
+        },
+				extensions = {
+					fzf_writer = {
+						minimum_grep_characters=4,
+					}
+				}
     }
 }
 require('telescope').load_extension('fzf')
