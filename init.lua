@@ -16,6 +16,7 @@ require('lv-gitsigns')
 require('lv-autopairs')
 require('lv-treesitter')
 require('harp')
+require('textobjects')
 
 -- LSP
 require('lsp')
