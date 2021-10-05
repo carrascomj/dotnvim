@@ -30,7 +30,7 @@ vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts
 vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-vim.api.nvim_set_keymap('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+-- vim.api.nvim_set_keymap('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 vim.api.nvim_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
 vim.api.nvim_set_keymap('n', 'gv', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 vim.api.nvim_set_keymap('n', 'gb', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
@@ -38,29 +38,29 @@ vim.api.nvim_set_keymap('n', ';', '<cmd>lua vim.lsp.diagnostic.show_line_diagnos
 vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
 
 -- show name of Language Server on diganostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-  function(_, _, params, client_id, _)
-    local uri = params.uri
-    local bufnr = vim.uri_to_bufnr(uri)
-
-    if not bufnr then
-      return
-    end
-
-    local diagnostics = params.diagnostics
-
-    for i, v in ipairs(diagnostics) do
-      diagnostics[i].message = string.format("%s [%s]", v.message, v.code)
-    end
-
-    vim.lsp.diagnostic.save(diagnostics, bufnr, client_id)
-
-    if not vim.api.nvim_buf_is_loaded(bufnr) then
-      return
-    end
-
-    vim.lsp.diagnostic.display(diagnostics, bufnr, client_id, {})
-end
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] =
+--   function(_, _, params, client_id, _)
+--     local uri = params.uri
+--     local bufnr = vim.uri_to_bufnr(uri)
+--
+--     if not bufnr then
+--       return
+--     end
+--
+--     local diagnostics = params.diagnostics
+--
+--     for i, v in ipairs(diagnostics) do
+--       diagnostics[i].message = string.format("%s [%s]", v.message, v.code)
+--     end
+--
+--     vim.lsp.diagnostic.save(diagnostics, bufnr, client_id)
+--
+--     if not vim.api.nvim_buf_is_loaded(bufnr) then
+--       return
+--     end
+--
+--     vim.lsp.diagnostic.display(diagnostics, bufnr, client_id, {})
+-- end
 
 -- symbols for autocomplete
 vim.lsp.protocol.CompletionItemKind = {
