@@ -37,3 +37,5 @@ define_augroups({
         {'FileType', 'floaterm', 'nnoremap <silent> <buffer> q :q<CR>'},
     },
 })
+
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
