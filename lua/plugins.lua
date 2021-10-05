@@ -35,7 +35,7 @@ return require("packer").startup(
         -- Color
         use "junegunn/rainbow_parentheses.vim"
         use "norcalli/nvim-colorizer.lua"
-				use {"cespare/vim-toml", ft="toml"}
+				use {"cespare/vim-toml", ft="toml", branch="main"}
 
         -- Packer can manage itself as an optional plugin
         use "wbthomason/packer.nvim"
@@ -63,6 +63,13 @@ return require("packer").startup(
 				use {"nvim-telescope/telescope-fzf-writer.nvim"}
 				-- Harpoon strange choice of the year
 				use "ThePrimeagen/harpoon"
+
+				-- Pop-up for code actions
+				use {
+					'weilbith/nvim-code-action-menu',
+					cmd = 'CodeActionMenu',
+				}
+				use 'kosayoda/nvim-lightbulb'
 
         -- Autocomplete
         use {"hrsh7th/nvim-compe", opt = true}
