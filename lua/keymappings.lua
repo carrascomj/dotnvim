@@ -19,7 +19,7 @@ vim.cmd([[
 
 -- telescope
 local opts = 
-vim.api.nvim_set_keymap('', '<C-f>', ':Telescope fd<CR>', {noremap = false})
+vim.api.nvim_set_keymap('', '<C-f>', [[:luado require("telescope.builtin").find_files({find_command = { "fd", "--type", "f", "--search-path", ".", "--search-path", ".github"}}) <CR>]], {noremap = false, silent = true})
 vim.api.nvim_set_keymap('', '<C-g>', [[:luado require('telescope').extensions.fzf_writer.staged_grep({prompt_title="RGrep"})<CR>]], {noremap = false})
 vim.api.nvim_set_keymap('', 'Ñ', [[<Cmd>lua vim.lsp.buf.formatting()<CR>]], {noremap = false, silent=true})
 vim.api.nvim_set_keymap('n', 'Q', ':CodeActionMenu<CR>', { noremap = true, silent = false })

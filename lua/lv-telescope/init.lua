@@ -13,7 +13,9 @@ require('telescope').setup {
 							'--with-filename',
 							'--line-number',
 							'--column',
-							'--smart-case'
+							'--smart-case',
+							'.',
+							'.github'
 				},
         prompt_prefix = "❯ ",
         results_title = "",
