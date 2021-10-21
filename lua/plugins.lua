@@ -72,9 +72,17 @@ return require("packer").startup(
 				use 'kosayoda/nvim-lightbulb'
 
         -- Autocomplete
-        use {"hrsh7th/nvim-compe", opt = true}
-        use {"hrsh7th/vim-vsnip", opt = true}
+        -- use {"hrsh7th/nvim-compe", opt = true}
+        -- use {"hrsh7th/vim-vsnip", opt = true}
         -- use {"rafamadriz/friendly-snippets", opt = true}
+				use "onsails/lspkind-nvim"
+        use "hrsh7th/nvim-cmp"
+				use 'hrsh7th/cmp-vsnip'
+				use 'hrsh7th/vim-vsnip'
+        use "hrsh7th/cmp-buffer"
+        use "hrsh7th/cmp-path"
+        use "hrsh7th/cmp-nvim-lua"
+        use "hrsh7th/cmp-nvim-lsp"
 				use "windwp/nvim-autopairs"
 
         -- Teesitter
@@ -104,8 +112,8 @@ return require("packer").startup(
         require_plugin("plenary.nvim")
         require_plugin("telescope.nvim")
         require_plugin("nvim-dap")
-        require_plugin("nvim-compe")
-        require_plugin("vim-vsnip")
+        -- require_plugin("nvim-compe")
+        -- require_plugin("vim-vsnip")
         require_plugin("nvim-autopairs")
         require_plugin("nvim-treesitter")
         require_plugin("nvim-web-devicons")

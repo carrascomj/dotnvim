@@ -4,6 +4,8 @@ vim.cmd([[highlight! VError guifg='#885c5c']])
 vim.cmd([[highlight! VHint guifg='#745675']])
 vim.cmd([[highlight! VInfo guifg='#5c7776']])
 
+vim.cmd('highlight! link CmpItemAbbr VInfo')
+vim.cmd('highlight! link CmpItemMenu VHint')
 vim.cmd('highlight! link LspDiagnosticsVirtualTextError VError')
 vim.cmd('highlight! link LspDiagnosticsVirtualTextWarning VWarn')
 vim.cmd('highlight! link LspDiagnosticsVirtualTextHint VHint')
@@ -63,33 +65,33 @@ vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").
 -- end
 
 -- symbols for autocomplete
-vim.lsp.protocol.CompletionItemKind = {
-    "   (Text) ",
-    "   (Method)",
-    "   (Function)",
-    "   (Constructor)",
-    "   (Field)",
-    "[] (Variable)",
-    "   (Class)",
-    " ﰮ  (Interface)",
-    "   (Module)",
-    " 襁 (Property)",
-    "   (Unit)",
-    "   (Value)",
-    "  (Enum)",
-    "   (Keyword)",
-    " ﬌  (Snippet)",
-    "   (Color)",
-    "   (File)",
-    "   (Reference)",
-    "   (Folder)",
-    "   (EnumMember)",
-    " ℏ  (Constant)",
-    "   (Struct)",
-    "   (Event)",
-    "   (Operator)",
-    "   (TypeParameter)"
-}
+-- vim.lsp.protocol.CompletionItemKind = {
+--     "   (Text) ",
+--     "   (Method)",
+--     "   (Function)",
+--     "   (Constructor)",
+--     "   (Field)",
+--     "[] (Variable)",
+--     "   (Class)",
+--     " ﰮ  (Interface)",
+--     "   (Module)",
+--     " 襁 (Property)",
+--     "   (Unit)",
+--     "   (Value)",
+--     "  (Enum)",
+--     "   (Keyword)",
+--     " ﬌  (Snippet)",
+--     "   (Color)",
+--     "   (File)",
+--     "   (Reference)",
+--     "   (Folder)",
+--     "   (EnumMember)",
+--     " ℏ  (Constant)",
+--     "   (Struct)",
+--     "   (Event)",
+--     "   (Operator)",
+--     "   (TypeParameter)"
+-- }
 
 --[[ " autoformat
 autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
