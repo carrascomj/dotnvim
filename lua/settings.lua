@@ -26,6 +26,13 @@ vim.cmd([[
 	set undofile
 ]])
 
+-- vim-test
+vim.cmd([[
+	let test#strategy = "neovim"
+	let test#python#runner = 'pytest'
+	let test#python#pytest#executable = 'python -m pytest'
+]])
+
 -- show a line delimiter
 vim.cmd('set colorcolumn=80')
 vim.cmd('highlight ColorColumn guibg=#313643')

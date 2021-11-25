@@ -18,11 +18,14 @@ vim.cmd([[
 ]])
 
 -- telescope
-local opts = 
 vim.api.nvim_set_keymap('', '<C-f>', [[:luado require("telescope.builtin").find_files({find_command = { "fd", "--type", "f", "--search-path", ".", "--search-path", ".github"}}) <CR>]], {noremap = false, silent = true})
-vim.api.nvim_set_keymap('', '<C-g>', [[:luado require('telescope').extensions.fzf_writer.staged_grep({prompt_title="RGrep"})<CR>]], {noremap = false})
+vim.api.nvim_set_keymap('', '<C-g>', [[:Telescope grep_string<CR>]], {noremap = false})
 vim.api.nvim_set_keymap('', 'Ñ', [[<Cmd>lua vim.lsp.buf.formatting()<CR>]], {noremap = false, silent=true})
 vim.api.nvim_set_keymap('n', 'Q', ':CodeActionMenu<CR>', { noremap = true, silent = false })
+-- test suite, quit terminal (C-\ C-w) and come back to editing window (C-w w)
+vim.api.nvim_set_keymap('n', 'ñs', [[:TestSuite<CR><C-\><C-n><C-w>w]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'ñf', [[:TestFile<CR><C-\><C-n><C-w>w]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'ñd', [[<C-w>w:bd!<CR>]], { noremap = true, silent = false })
 
 -- harpoon: clear list and mark current file
 vim.api.nvim_set_keymap('n', 'Ç', [[:lua require'harpoon.mark'.clear_all() require'harpoon.mark'.add_file()<CR>]], {noremap=false, silent=false})

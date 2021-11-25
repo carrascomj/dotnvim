@@ -55,12 +55,14 @@ return require("packer").startup(
 						end
     		}
 
+				-- unit tests
+		    use "vim-test/vim-test"
+
         -- Telescope
         use {"nvim-lua/popup.nvim", opt = true}
         use {"nvim-lua/plenary.nvim", opt = true}
         use {"nvim-telescope/telescope.nvim", opt = true}
 				use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
-				use {"nvim-telescope/telescope-fzf-writer.nvim"}
 				-- Harpoon strange choice of the year
 				use "ThePrimeagen/harpoon"
 

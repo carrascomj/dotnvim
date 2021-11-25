@@ -79,11 +79,6 @@ require('telescope').setup {
                 -- ["<C-i>"] = my_cool_custom_action,
             }
         },
-				extensions = {
-					fzf_writer = {
-						minimum_grep_characters=4,
-					}
-				}
     }
 }
 require('telescope').load_extension('fzf')
