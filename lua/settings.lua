@@ -1,9 +1,9 @@
-vim.cmd('set iskeyword+=-') -- treat dash separated words as a word text object"
+vim.cmd("set iskeyword+=-") -- treat dash separated words as a word text object"
 -- vim.cmd('set shortmess+=c') -- Don't pass messages to |ins-completion-menu|.
 -- vim.cmd('set nofoldenable') -- Make substitution work in realtime
-vim.cmd('set nohlsearch') -- Don't pollute the screen with yellow (/)
+vim.cmd("set nohlsearch") -- Don't pollute the screen with yellow (/)
 -- vim.cmd('set incsearch') -- Make substitution work in realtime
-vim.cmd('set noswapfile')
+vim.cmd("set noswapfile")
 -- vim.cmd('set smarttab')
 vim.go.termguicolors = true -- set term giu colors most terminals support this
 vim.o.hidden = O.hidden_files -- Required to keep multiple buffers open multiple buffers
@@ -43,21 +43,20 @@ let did_load_csvfiletype=1
 augroup filetypedetect
   au! BufRead,BufNewFile *.csv,*.dat	setfiletype csv
 augroup END
-]]
-)
+]])
 
 -- show a line delimiter
-vim.cmd('set colorcolumn=80')
-vim.cmd('highlight ColorColumn guibg=#313643')
+vim.cmd("set colorcolumn=80")
+vim.cmd("highlight ColorColumn guibg=#313643")
 vim.wo.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 
 vim.o.title = true
-TERMINAL = vim.fn.expand('$TERMINAL')
-vim.cmd('let &titleold="'..TERMINAL..'"')
-vim.o.titlestring="%<%F%=%l/%L - nvim"
+TERMINAL = vim.fn.expand("$TERMINAL")
+vim.cmd('let &titleold="' .. TERMINAL .. '"')
+vim.o.titlestring = "%<%F%=%l/%L - nvim"
 -- vim.wo.wrap = O.wrap_lines -- Display long lines as just one line
-vim.cmd('set whichwrap+=<,>,[,],h,l') -- move to next line with theses keys
-vim.cmd('syntax on') -- move to next line with theses keys
+vim.cmd("set whichwrap+=<,>,[,],h,l") -- move to next line with theses keys
+vim.cmd("syntax on") -- move to next line with theses keys
 -- vim.o.pumheight = 10 -- Makes popup menu smaller
 vim.o.fileencoding = "utf-8" -- The encoding written to file
 vim.o.cmdheight = 2 -- More space for displaying messages
@@ -81,4 +80,4 @@ vim.o.guifont = "FiraCode Nerd Font:h17"
 -- Complete stuff
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- Don't show the dumb matching stuff.
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append("c")

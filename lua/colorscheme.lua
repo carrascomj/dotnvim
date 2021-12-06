@@ -1,7 +1,7 @@
-vim.cmd('let g:nvcode_termcolors=256')
+vim.cmd("let g:nvcode_termcolors=256")
 
-vim.cmd('colorscheme ' .. O.colorscheme)
-require'colorizer'.setup()
+vim.cmd("colorscheme " .. O.colorscheme)
+require("colorizer").setup()
 
 -- Telescope bunting
 vim.cmd([[highlight TelescopeBorder guifg=#494b53]])

@@ -1,6 +1,6 @@
-local lspkind = require "lspkind"
-lspkind.init() local cmp = require'cmp'
-
+local lspkind = require("lspkind")
+lspkind.init()
+local cmp = require("cmp")
 
 cmp.setup({
 	snippet = {
@@ -16,36 +16,37 @@ cmp.setup({
 		end,
 	},
 	mapping = {
-		['<C-j>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-		['<C-k>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-		['<C-d>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
-		['<C-Space>'] = cmp.mapping.complete(),
-		['<C-e>'] = cmp.mapping.close(),
-		['<CR>'] = cmp.mapping.confirm({ select = true }),
+		["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-e>"] = cmp.mapping.close(),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	},
 	formatting = {
-    -- Youtube: How to set up nice formatting for your sources.
-    format = lspkind.cmp_format {
-      with_text = true,
-      menu = {
-        buffer = "[buf]",
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[api]",
-        path = "[path]",
-        luasnip = "[snip]",
-        gh_issues = "[issues]",
-      },
-    },
-  },	experimental = {
+		-- Youtube: How to set up nice formatting for your sources.
+		format = lspkind.cmp_format({
+			with_text = true,
+			menu = {
+				buffer = "[buf]",
+				nvim_lsp = "[LSP]",
+				nvim_lua = "[api]",
+				path = "[path]",
+				luasnip = "[snip]",
+				gh_issues = "[issues]",
+			},
+		}),
+	},
+	experimental = {
 		native_menu = false,
-		ghost_text = true
+		ghost_text = true,
 	},
 	sources = {
-		{ name = 'nvim_lsp' },
+		{ name = "nvim_lsp" },
 
 		-- For vsnip user.
-		{ name = 'vsnip' },
+		{ name = "vsnip" },
 
 		-- For luasnip user.
 		-- { name = 'luasnip' },
@@ -53,7 +54,7 @@ cmp.setup({
 		-- For ultisnips user.
 		-- { name = 'ultisnips' },
 
-		{ name = 'path' },
-		{ name = 'buffer' },
-	}
+		{ name = "path" },
+		{ name = "buffer" },
+	},
 })
