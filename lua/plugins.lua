@@ -43,17 +43,6 @@ return require("packer").startup(
 				-- Lsp
         use {"neovim/nvim-lspconfig", opt = true}
         use {"kabouzeid/nvim-lspinstall", opt = true}
-				-- out-of-spec LSP (mainly for prose lintere)
-        use {"jose-elias-alvarez/null-ls.nvim",
-					  ft={"markdown", "txt", "tex"},
-			      config=function ()
-							local null_ls = require("null-ls")
-							local sources = {
-									null_ls.builtins.diagnostics.vale.with({filetypes={"markdown", "txt", "tex"}}),
-							}
-							null_ls.setup {sources = sources}
-						end
-    		}
 
 				-- unit tests
 		    use "vim-test/vim-test"
@@ -74,13 +63,11 @@ return require("packer").startup(
 				use 'kosayoda/nvim-lightbulb'
 
         -- Autocomplete
-        -- use {"hrsh7th/nvim-compe", opt = true}
-        -- use {"hrsh7th/vim-vsnip", opt = true}
-        -- use {"rafamadriz/friendly-snippets", opt = true}
 				use "onsails/lspkind-nvim"
         use "hrsh7th/nvim-cmp"
-				use 'hrsh7th/cmp-vsnip'
-				use 'hrsh7th/vim-vsnip'
+				use "hrsh7th/cmp-vsnip"
+				use "hrsh7th/vim-vsnip"
+				use "rafamadriz/friendly-snippets"
         use "hrsh7th/cmp-buffer"
         use "hrsh7th/cmp-path"
         use "hrsh7th/cmp-nvim-lua"
@@ -95,10 +82,8 @@ return require("packer").startup(
 				-- colorscheme
         use "joshdick/onedark.vim"
 
-        -- use {'lukas-reineke/indent-blankline.nvim', opt=true, branch = 'lua'}
         use {"lewis6991/gitsigns.nvim", opt = true}
         use {"terrortylor/nvim-comment", opt = true}
-        -- use {"kevinhwang91/nvim-bqf", opt = true}
 
         -- Surround
         use "tpope/vim-surround"
