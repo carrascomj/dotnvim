@@ -12,6 +12,7 @@ vim.cmd([[
   noremap <C-J> a<CR><Esc>k$
 	noremap <C-q> :lua require('lv-telescope').fdsbml()<CR>
 	nnoremap <C-n> :lua require('lv-telescope').bib()<CR>
+	nnoremap <C-b> :lua require('lv-telescope').search_dotfiles()<CR>
 
 	vnoremap <C-y> "*y :let @+=@*<CR>
   map <C-p> "+P

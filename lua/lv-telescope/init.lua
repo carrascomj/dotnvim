@@ -230,6 +230,15 @@ M.bib = function()
 }:find()
 end
 
+M.search_dotfiles = function()
+    require("telescope.builtin").find_files({
+        find_command = {'fd'},
+        prompt_title = "< VimRC >",
+        cwd = "/home/georg/.config/nvim",
+        hidden = true,
+    })
+end
+
 return M
 
 
