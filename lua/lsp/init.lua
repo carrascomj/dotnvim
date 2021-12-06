@@ -6,25 +6,26 @@ vim.cmd([[highlight! VInfo guifg='#5c7776']])
 
 vim.cmd('highlight! link CmpItemAbbr VInfo')
 vim.cmd('highlight! link CmpItemMenu VHint')
-vim.cmd('highlight! link LspDiagnosticsVirtualTextError VError')
-vim.cmd('highlight! link LspDiagnosticsVirtualTextWarning VWarn')
-vim.cmd('highlight! link LspDiagnosticsVirtualTextHint VHint')
-vim.cmd('highlight! link LspDiagnosticsVirtualTextInformation VInfo')
+vim.cmd('highlight! link DiagnosticVirtualTextError VError')
+vim.cmd('highlight! link DiagnosticVirtualTextWarn VWarn')
+vim.cmd('highlight! link DiagnosticVirtualTextHint VHint')
+vim.cmd('highlight! link DiagnosticVirtualTextInfo VInfo')
+
 vim.fn.sign_define(
-    "LspDiagnosticsSignError",
-    {texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError"}
+    "DiagnosticSignError",
+    {texthl = "DiagnosticSignError", text = "", numhl = "DiagnosticSignError"}
 )
 vim.fn.sign_define(
-    "LspDiagnosticsSignWarning",
-    {texthl = "LspDiagnosticsSignWarning", text = "", numhl = "LspDiagnosticsSignWarning"}
+    "DiagnosticSignWarn",
+    {texthl = "DiagnosticSignWarn", text = "", numhl = "DiagnosticSignWarn"}
 )
 vim.fn.sign_define(
-    "LspDiagnosticsSignHint",
-    {texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint"}
+    "DiagnosticSignHint",
+    {texthl = "DiagnosticSignHint", text = "", numhl = "DiagnosticSignHint"}
 )
 vim.fn.sign_define(
-    "LspDiagnosticsSignInformation",
-    {texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation"}
+    "DiagnosticSignInfo",
+    {texthl = "DiagnosticSignInfo", text = "", numhl = "DiagnosticSignInfo"}
 )
 
 local opts = { noremap = true, silent = true }

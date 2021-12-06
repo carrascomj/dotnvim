@@ -1,4 +1,5 @@
 vim.g.mapleader = ' '
+require('impatient')
 
 require('plugins')
 require('lv-globals')
@@ -25,6 +26,7 @@ require('lsp.lua-ls')
 -- require('lsp.efm-general-ls')
 require('lsp.pylsp')
 -- require('lsp.pyright')
+-- require('lsp.js-ts-ls')
 require('lsp.rust-ls')
 require('lsp.json-ls')
 require('lsp.yaml-ls')
