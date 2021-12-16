@@ -16,6 +16,7 @@ vim.cmd([[
 
 	vnoremap <C-y> "*y :let @+=@*<CR>
   map <C-p> "+P
+	let mapleader = " "
 ]])
 
 -- telescope
@@ -27,17 +28,17 @@ vim.api.nvim_set_keymap(
 )
 vim.api.nvim_set_keymap("", "<C-g>", [[:Telescope grep_string<CR>]], { noremap = false })
 vim.api.nvim_set_keymap("n", "gr", ":Telescope lsp_references<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("", "Ñ", [[<Cmd>lua vim.lsp.buf.formatting()<CR>]], { noremap = false, silent = true })
-vim.api.nvim_set_keymap("n", "Q", ":CodeActionMenu<CR>", { noremap = true, silent = false })
+vim.api.nvim_set_keymap("", "<leader>f", [[<Cmd>lua vim.lsp.buf.formatting()<CR>]], { noremap = false, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>q", ":CodeActionMenu<CR>", { noremap = true, silent = false })
 -- test suite, quit terminal (C-\ C-w) and come back to editing window (C-w w)
-vim.api.nvim_set_keymap("n", "ñs", [[:TestSuite<CR><C-\><C-n><C-w>w]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "ñf", [[:TestFile<CR><C-\><C-n><C-w>w]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "ñd", [[<C-w>w:bd!<CR>]], { noremap = true, silent = false })
+vim.api.nvim_set_keymap("n", "<leader>s", [[:TestSuite<CR><C-\><C-n><C-w>w]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>a", [[:TestFile<CR><C-\><C-n><C-w>w]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>x", [[<C-w>w:bd!<CR>]], { noremap = true, silent = false })
 
 -- harpoon: clear list and mark current file
 vim.api.nvim_set_keymap(
 	"n",
-	"Ç",
+	"<leader>m",
 	[[:lua require'harpoon.mark'.clear_all() require'harpoon.mark'.add_file()<CR>]],
 	{ noremap = false, silent = false }
 )
