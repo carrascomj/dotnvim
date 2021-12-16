@@ -45,6 +45,11 @@ augroup filetypedetect
 augroup END
 ]])
 
+-- italics for onedark
+vim.cmd([[
+	let g:onedark_terminal_italics = 1
+]])
+
 -- show a line delimiter
 vim.cmd("set colorcolumn=80")
 vim.cmd("highlight ColorColumn guibg=#313643")
