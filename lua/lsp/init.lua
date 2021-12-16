@@ -3,6 +3,7 @@ vim.cmd([[highlight! VWarn guifg='#77765c']])
 vim.cmd([[highlight! VError guifg='#885c5c']])
 vim.cmd([[highlight! VHint guifg='#745675']])
 vim.cmd([[highlight! VInfo guifg='#5c7776']])
+vim.cmd([[highlight! HHint guifg='#4c515f']])
 
 vim.cmd("highlight! link CmpItemAbbr VInfo")
 vim.cmd("highlight! link CmpItemMenu VHint")
@@ -10,6 +11,8 @@ vim.cmd("highlight! link DiagnosticVirtualTextError VError")
 vim.cmd("highlight! link DiagnosticVirtualTextWarn VWarn")
 vim.cmd("highlight! link DiagnosticVirtualTextHint VHint")
 vim.cmd("highlight! link DiagnosticVirtualTextInfo VInfo")
+vim.cmd("highlight! link DiagnosticUnderlineHint HHint")
+vim.cmd("highlight! link DiagnosticHint VHint")
 
 vim.fn.sign_define(
 	"DiagnosticSignError",
@@ -29,6 +32,8 @@ vim.api.nvim_set_keymap("n", "gv", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>"
 vim.api.nvim_set_keymap("n", "gb", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
 vim.api.nvim_set_keymap("n", ";", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
 vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
+
+vim.cmd[[autocmd CursorHold,CursorHoldI *.rs :lua require'lsp_extensions'.inlay_hints{ only_current_line = true }]]
 
 -- show name of Language Server on diganostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -73,7 +78,7 @@ autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100) ]]
 -- Java
 -- autocmd FileType java nnoremap ca <Cmd>lua require('jdtls').code_action()<CR>
 
-local function documentHighlight(client, bufnr)
+local function documentHighlight(client)
 	-- Set autocommands conditional on server_capabilities
 	if client.resolved_capabilities.document_highlight then
 		vim.api.nvim_exec(
@@ -93,12 +98,12 @@ local function documentHighlight(client, bufnr)
 end
 local lsp_config = {}
 
-function lsp_config.common_on_attach(client, bufnr)
-	documentHighlight(client, bufnr)
+function lsp_config.common_on_attach(client)
+	documentHighlight(client)
 end
 
 function lsp_config.tsserver_on_attach(client, bufnr)
-	lsp_config.common_on_attach(client, bufnr)
+	lsp_config.common_on_attach(client)
 	client.resolved_capabilities.document_formatting = false
 end
 

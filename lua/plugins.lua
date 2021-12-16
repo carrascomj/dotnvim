@@ -38,7 +38,6 @@ return require("packer").startup({
 		-- Color
 		use("junegunn/rainbow_parentheses.vim")
 		use("norcalli/nvim-colorizer.lua")
-		use({ "cespare/vim-toml", ft = "toml", branch = "main" })
 
 		-- Packer can manage itself as an optional plugin
 		use("wbthomason/packer.nvim")
@@ -46,6 +45,7 @@ return require("packer").startup({
 		-- Lsp
 		use({ "neovim/nvim-lspconfig", opt = true })
 		use({ "kabouzeid/nvim-lspinstall", opt = true })
+		use 'nvim-lua/lsp_extensions.nvim'
 
 		-- unit tests
 		use("vim-test/vim-test")
