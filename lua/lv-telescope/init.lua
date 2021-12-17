@@ -97,13 +97,13 @@ end
 
 local M = {}
 -- show a fuzzy summary of a SBML file at root_dir .. @"
--- The SBML file is taken from register @ and then looked up in the working dir
+-- The SBML file is taken from input and then looked up in the working dir
 M.fdsbml = function()
 	local model_file
 	require("plenary.job")
 		:new({
 			command = "fd",
-			args = { "-F", "-p", vim.fn.getreg("@") },
+			args = { "-F", "-p", vim.fn.input("SBML file: ") },
 			on_exit = function(j, _)
 				model_file = j:result()[1]
 			end,
