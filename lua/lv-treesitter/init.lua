@@ -13,6 +13,7 @@ require("nvim-treesitter.configs").setup({
 	-- TODO seems to be broken
 	indent = { disable = { "python" } },
 	autotag = { enable = true },
+	-- nvim-treesitter-textobjects motions
 	textobjects = {
 		select = {
 			enable = true,
@@ -30,6 +31,9 @@ require("nvim-treesitter.configs").setup({
 				["ib"] = "@block.inner",
 			},
 
+		},
+		move = {
+			set_jumps = false,
 			-- move to next function!
 			goto_next_start = {
         ["]]"] = "@function.outer",
@@ -37,6 +41,13 @@ require("nvim-treesitter.configs").setup({
       goto_previous_start = {
         ["[["] = "@function.outer",
       },
-		},
+		}
 	},
+	-- add treesitter-powered docs
+	-- tree_docs = {
+	-- 	enable = true,
+	-- 	keymaps = {
+	-- 		doc_node_at_cursor = "<leader>d"
+	-- 	}
+	-- }
 })

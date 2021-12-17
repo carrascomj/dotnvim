@@ -80,6 +80,7 @@ return require("packer").startup({
 		-- Teesitter
 		use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 		use("nvim-treesitter/nvim-treesitter-textobjects")
+		-- use("nvim-treesitter/nvim-tree-docs")
 		-- use "nvim-treesitter/playground"
 
 		-- colorscheme
