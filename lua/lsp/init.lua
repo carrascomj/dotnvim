@@ -38,7 +38,9 @@ vim.cmd[[autocmd CursorHold,CursorHoldI *.rs :lua require'lsp_extensions'.inlay_
 -- show name of Language Server on diganostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	virtual_text = {
-		source = "always", -- Or "if_many"
+		format=function(diagnostic)
+			return string.format("%s [%s]", diagnostic.message, diagnostic.source)
+		end
 	},
 })
 
