@@ -35,14 +35,8 @@ vim.cmd([[
 
 -- csv weird
 vim.cmd([[
-if exists("did_load_csvfiletype")
-  finish
-endif
-let did_load_csvfiletype=1
-
-augroup filetypedetect
-  au! BufRead,BufNewFile *.csv,*.dat	setfiletype csv
-augroup END
+:filetype plugin on
+let g:csv_autocmd_arrange = 1
 ]])
 
 -- italics for onedark
