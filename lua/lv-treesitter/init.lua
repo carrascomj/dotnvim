@@ -7,6 +7,8 @@ require("nvim-treesitter.configs").setup({
 			["text.reference"] = "Keyword",
 			["text.emphasis"] = "markdownItalic",
 			["text.uri"] = "markdownUrl",
+			["punctuation.special"] = "Keyword",
+			["string.escape"] = "Question",
 		}
 	},
 	-- indent = {enable = true, disable = {"python", "html", "javascript"}},
@@ -43,6 +45,15 @@ require("nvim-treesitter.configs").setup({
       },
 		}
 	},
+	refactor = {
+		highlight_definitions = { enable = true },	
+		smart_rename = {
+			enable = true,
+			keymaps = {
+				smart_rename = "gn",
+			},
+		},
+	}
 	-- add treesitter-powered docs
 	-- tree_docs = {
 	-- 	enable = true,
