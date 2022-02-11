@@ -15,7 +15,7 @@ require("gitsigns").setup({
 		buffer = true,
 		["n gt"] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'" },
 	},
-	watch_index = {
+	watch_gitdir = {
 		interval = 1000,
 	},
 	sign_priority = 6,
