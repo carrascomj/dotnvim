@@ -25,8 +25,6 @@ require("nvim-treesitter.configs").setup({
 
 			keymaps = {
 				-- You can use the capture groups defined in textobjects.scm
-				["af"] = "@function.outer",
-				["if"] = "@function.inner",
 				["ac"] = "@class.outer",
 				["ic"] = "@class.inner",
 				["ab"] = "@block.outer",
@@ -46,14 +44,22 @@ require("nvim-treesitter.configs").setup({
 		}
 	},
 	refactor = {
-		highlight_definitions = { enable = true },	
+		highlight_definitions = { enable = true },
 		smart_rename = {
 			enable = true,
 			keymaps = {
 				smart_rename = "gn",
 			},
 		},
-	}
+	},
+	textsubjects = {
+        enable = true,
+        prev_selection = ',', -- (Optional) keymap to select the previous selection
+        keymaps = {
+            ['if'] = 'textsubjects-container-outer',
+            ['af'] = 'textsubjects-container-inner',
+        },
+    }
 	-- add treesitter-powered docs
 	-- tree_docs = {
 	-- 	enable = true,
