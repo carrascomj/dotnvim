@@ -58,7 +58,7 @@ vim.cmd("set whichwrap+=<,>,[,],h,l") -- move to next line with theses keys
 vim.cmd("syntax on") -- move to next line with theses keys
 -- vim.o.pumheight = 10 -- Makes popup menu smaller
 vim.o.fileencoding = "utf-8" -- The encoding written to file
-vim.o.cmdheight = 2 -- More space for displaying messages
+vim.o.cmdheight = 1 -- More space for displaying messages
 vim.o.mouse = "a" -- Enable your mouse
 vim.o.splitbelow = true -- Horizontal splits will automatically be below
 vim.o.splitright = true -- Vertical splits will automatically be to the right
@@ -66,7 +66,7 @@ vim.go.t_Co = "256" -- Support 256 colors
 vim.o.conceallevel = 0 -- So that I can see `` in markdown files
 vim.bo.smartindent = true -- Makes indenting smart
 vim.wo.cursorline = true -- Enable highlighting of the current line
-vim.o.showtabline = 2 -- Always show tabs
+vim.o.showtabline = 0 -- Always show tabs
 vim.o.showmode = false -- We don't need to see things like -- INSERT -- anymore
 -- vim.o.backup = false -- This is recommended by coc
 -- vim.o.writebackup = false -- This is recommended by coc

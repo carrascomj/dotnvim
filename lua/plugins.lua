@@ -81,8 +81,11 @@ return require("packer").startup({
 		use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 		use("nvim-treesitter/nvim-treesitter-textobjects")
 		use "nvim-treesitter/nvim-treesitter-refactor"
+		use "RRethy/nvim-treesitter-textsubjects"
 		-- use("nvim-treesitter/nvim-tree-docs")
 		-- use "nvim-treesitter/playground"
+		-- stan syntax
+		use "maedoc/stan.vim"
 
 		-- colorscheme
 		use("joshdick/onedark.vim")
@@ -94,12 +97,28 @@ return require("packer").startup({
 		use("tpope/vim-surround")
 
 		-- Status Line and Bufferline
-		use("glepnir/galaxyline.nvim")
-		use("romgrk/barbar.nvim")
+		-- use{"dsych/galaxyline.nvim", commit="586ed3b6c8f0e066606f6b621b0b34bdb1c9fe57", branch="bugfix/diagnostics"}
+    use "NTBBloodbath/galaxyline.nvim"
+		-- use("romgrk/barbar.nvim")
 		use({ "kyazdani42/nvim-web-devicons", opt = true })
 
 		-- weird csv stuff
 		use("chrisbra/csv.vim")
+
+		-- SSH: like ratom but more neo and more vim
+		-- use {
+		-- 	'chipsenkbeil/distant.nvim',
+		-- 	config = function()
+		-- 		require('distant').setup {
+		-- 			-- Applies Chip's personal settings to every machine you connect to
+		-- 			--
+		-- 			-- 1. Ensures that distant servers terminate with no connections
+		-- 			-- 2. Provides navigation bindings for remote directories
+		-- 			-- 3. Provides keybinding to jump into a remote file's parent directory
+		-- 			['*'] = require('distant.settings').chip_default()
+		-- 		}
+		-- 	end
+		-- }
 
 		require_plugin("nvim-lspconfig")
 		require_plugin("nvim-lspinstall")
@@ -116,7 +135,7 @@ return require("packer").startup({
 		require_plugin("nvim-comment")
 		-- require_plugin("nvim-bqf")
 		require_plugin("galaxyline.nvim")
-		require_plugin("barbar.nvim")
+		-- require_plugin("barbar.nvim")
 	end,
 	compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
 })
