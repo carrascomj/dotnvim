@@ -9,13 +9,14 @@ an executable
 
 -- general
 O.auto_complete = true
-O.colorscheme = 'onedark'
+-- O.colorscheme = 'onedark'
+O.colorscheme = 'tokyonight'
 O.auto_close_tree = 0
 O.wrap_lines = false
 
 -- if you don't want all the parsers change this to a table of the ones you want
 O.treesitter.ensure_installed = "all"
-O.treesitter.ignore_install = {"haskell"}
+O.treesitter.ignore_install = {"ruby", "erlang"}
 O.treesitter.highlight.enabled = true
 
 

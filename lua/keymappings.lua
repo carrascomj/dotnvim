@@ -28,7 +28,7 @@ vim.api.nvim_set_keymap(
 )
 vim.api.nvim_set_keymap("", "<C-g>", [[:Telescope grep_string<CR>]], { noremap = false })
 vim.api.nvim_set_keymap("n", "gr", ":Telescope lsp_references<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("", "<leader>f", [[<Cmd>lua vim.lsp.buf.formatting()<CR>]], { noremap = false, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>f", [[<Cmd>lua vim.lsp.buf.formatting()<CR>]], { noremap = false, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>q", ":CodeActionMenu<CR>", { noremap = true, silent = false })
 -- test suite, quit terminal (C-\ C-w) and come back to editing window (C-w w)
 vim.api.nvim_set_keymap("n", "<leader>s", [[:TestSuite<CR><C-\><C-n><C-w>w]], { noremap = true, silent = true })
@@ -59,7 +59,7 @@ vim.api.nvim_set_keymap("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silen
 vim.api.nvim_set_keymap("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
 
 -- Format
-vim.api.nvim_set_keymap("", "¡", ':w! | !compiler "<c-r>%"<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "!", ':w! | !compile.sh "<c-r>%"<CR><CR>', { noremap = true, silent = true })
 
 -- Better nav for omnicomplete
 vim.cmd('inoremap <expr> <c-j> ("\\<C-n>")')

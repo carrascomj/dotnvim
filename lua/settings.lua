@@ -5,6 +5,7 @@ vim.cmd("set nohlsearch") -- Don't pollute the screen with yellow (/)
 -- vim.cmd('set incsearch') -- Make substitution work in realtime
 vim.cmd("set noswapfile")
 -- vim.cmd('set smarttab')
+vim.g.tokyonight_style = "storm"
 vim.go.termguicolors = true -- set term giu colors most terminals support this
 vim.o.hidden = O.hidden_files -- Required to keep multiple buffers open multiple buffers
 vim.o.updatetime = 300 -- Faster completion
@@ -31,6 +32,7 @@ vim.cmd([[
 	let test#strategy = "neovim"
 	let test#python#runner = 'pytest'
 	let test#python#pytest#executable = 'python -m pytest'
+	let test#neovim#term_position = "vert"
 ]])
 
 -- csv weird
@@ -45,8 +47,8 @@ vim.cmd([[
 ]])
 
 -- show a line delimiter
-vim.cmd("set colorcolumn=80")
-vim.cmd("highlight ColorColumn guibg=#313643")
+-- vim.cmd("set colorcolumn=80")
+-- vim.cmd("highlight ColorColumn guibg=#313643")
 vim.wo.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 
 vim.o.title = true
