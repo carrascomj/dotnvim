@@ -1,18 +1,18 @@
 -- Override virtual text in onedark.vim with dimmer colors
--- vim.cmd([[highlight! VWarn guifg='#77765c']])
--- vim.cmd([[highlight! VError guifg='#885c5c']])
--- vim.cmd([[highlight! VHint guifg='#745675']])
--- vim.cmd([[highlight! VInfo guifg='#5c7776']])
--- vim.cmd([[highlight! HHint guifg='#4c515f']])
+vim.cmd([[highlight! VWarn guifg='#77765c']])
+vim.cmd([[highlight! VError guifg='#885c5c']])
+vim.cmd([[highlight! VHint guifg='#745675']])
+vim.cmd([[highlight! VInfo guifg='#5c7776']])
+vim.cmd([[highlight! HHint guifg='#4c515f']])
 
--- vim.cmd("highlight! link CmpItemAbbr VInfo")
--- vim.cmd("highlight! link CmpItemMenu VHint")
--- vim.cmd("highlight! link DiagnosticVirtualTextError VError")
--- vim.cmd("highlight! link DiagnosticVirtualTextWarn VWarn")
--- vim.cmd("highlight! link DiagnosticVirtualTextHint VHint")
--- vim.cmd("highlight! link DiagnosticVirtualTextInfo VInfo")
--- vim.cmd("highlight! link DiagnosticUnderlineHint HHint")
--- vim.cmd("highlight! link DiagnosticHint VHint")
+vim.cmd("highlight! link CmpItemAbbr VInfo")
+vim.cmd("highlight! link CmpItemMenu VHint")
+vim.cmd("highlight! link DiagnosticVirtualTextError VError")
+vim.cmd("highlight! link DiagnosticVirtualTextWarn VWarn")
+vim.cmd("highlight! link DiagnosticVirtualTextHint VHint")
+vim.cmd("highlight! link DiagnosticVirtualTextInfo VInfo")
+vim.cmd("highlight! link DiagnosticUnderlineHint HHint")
+vim.cmd("highlight! link DiagnosticHint VHint")
 
 vim.fn.sign_define(
 	"DiagnosticSignError",
