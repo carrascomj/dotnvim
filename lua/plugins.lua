@@ -95,6 +95,7 @@ return require("packer").startup({
 
 		-- Surround
 		use("tpope/vim-surround")
+		use { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins' }
 
 		-- Status Line and Bufferline
 		-- use{"dsych/galaxyline.nvim", commit="586ed3b6c8f0e066606f6b621b0b34bdb1c9fe57", branch="bugfix/diagnostics"}

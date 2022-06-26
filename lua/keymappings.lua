@@ -64,3 +64,6 @@ vim.api.nvim_set_keymap("", "¡", ':w! | !compiler "<c-r>%"<CR>', { noremap = tr
 -- Better nav for omnicomplete
 vim.cmd('inoremap <expr> <c-j> ("\\<C-n>")')
 vim.cmd('inoremap <expr> <c-k> ("\\<C-p>")')
+
+vim.api.nvim_set_keymap("x", "<leader>r", [[:<C-u>MagmaEvaluateVisual<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ro", [[:MagmaShowOutput<CR>]], { noremap = true, silent = true })
