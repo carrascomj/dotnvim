@@ -1,7 +1,6 @@
 require("nvim-treesitter.configs").setup({
 	ensure_installed = "all",
-	highlight = {
-		enable = true, -- false will disable the whole extension
+	highlight = { enable = true, -- false will disable the whole extension
 		custom_captures = {
 			["text.title"] = "Question",
 			["text.reference"] = "Keyword",
@@ -56,8 +55,8 @@ require("nvim-treesitter.configs").setup({
         enable = true,
         prev_selection = ',', -- (Optional) keymap to select the previous selection
         keymaps = {
-            ['if'] = 'textsubjects-container-outer',
-            ['af'] = 'textsubjects-container-inner',
+            ['af'] = 'textsubjects-container-outer',
+            ['if'] = 'textsubjects-container-inner',
         },
     }
 	-- add treesitter-powered docs
@@ -68,3 +67,29 @@ require("nvim-treesitter.configs").setup({
 	-- 	}
 	-- }
 })
+
+-- recover rst python docs
+-- from https://github.com/nvim-treesitter/nvim-treesitter/pull/2168 
+require("vim.treesitter.query").set_query("python", "injections", [[
+((call
+  function: (attribute
+	  object: (identifier) @_re)
+  arguments: (argument_list (string) @regex))
+ (#eq? @_re "re")
+ (#lua-match? @regex "^r.*"))
+; Module docstring
+((module . (expression_statement (string) @rst))
+ (#offset! @rst 0 3 0 -3))
+; Class docstring
+((class_definition
+  body: (block . (expression_statement (string) @rst)))
+ (#offset! @rst 0 3 0 -3))
+; Function/method docstring
+((function_definition
+  body: (block . (expression_statement (string) @rst)))
+ (#offset! @rst 0 3 0 -3))
+; Attribute docstring
+(((expression_statement (assignment)) . (expression_statement (string) @rst))
+ (#offset! @rst 0 3 0 -3))
+(comment) @comment
+]])

@@ -14,8 +14,6 @@ require("telescope").setup({
 			"--line-number",
 			"--column",
 			"--smart-case",
-			".",
-			".github",
 		},
 		prompt_prefix = "❯ ",
 		results_title = "",

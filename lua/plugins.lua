@@ -105,21 +105,37 @@ return require("packer").startup({
 
 		-- weird csv stuff
 		use("chrisbra/csv.vim")
+		use{"jose-elias-alvarez/null-ls.nvim", config=function ()
+			require("null-ls").setup({
+				debug=true,
+				sources = {
+					require("null-ls").builtins.diagnostics.write_good,
+				}
+			})
+			end
+		}
 
 		-- SSH: like ratom but more neo and more vim
-		-- use {
-		-- 	'chipsenkbeil/distant.nvim',
-		-- 	config = function()
-		-- 		require('distant').setup {
-		-- 			-- Applies Chip's personal settings to every machine you connect to
-		-- 			--
-		-- 			-- 1. Ensures that distant servers terminate with no connections
-		-- 			-- 2. Provides navigation bindings for remote directories
-		-- 			-- 3. Provides keybinding to jump into a remote file's parent directory
-		-- 			['*'] = require('distant.settings').chip_default()
-		-- 		}
-		-- 	end
-		-- }
+		use {
+			'chipsenkbeil/distant.nvim',
+			config = function()
+				require('distant').setup {
+					-- Applies Chip's personal settings to every machine you connect to
+					--
+					-- 1. Ensures that distant servers terminate with no connections
+					-- 2. Provides navigation bindings for remote directories
+					-- 3. Provides keybinding to jump into a remote file's parent directory
+					require('distant').setup {
+							['*'] = vim.tbl_deep_extend('force', require('distant.settings').chip_default(), {
+									mode = 'ssh',
+									ssh = {
+										identity_files = { '/home/georg/.ssh/qmcm01_key.pem' },
+									}
+							})
+					}
+				}
+			end
+		}
 
 		require_plugin("nvim-lspconfig")
 		require_plugin("nvim-lspinstall")

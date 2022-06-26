@@ -28,9 +28,9 @@ vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt
 vim.api.nvim_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 -- vim.api.nvim_set_keymap('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 vim.api.nvim_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-vim.api.nvim_set_keymap("n", "gv", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-vim.api.nvim_set_keymap("n", "gb", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-vim.api.nvim_set_keymap("n", ";", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
+vim.api.nvim_set_keymap("n", "gv", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+vim.api.nvim_set_keymap("n", "gb", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+vim.api.nvim_set_keymap("n", ";", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
 
 vim.cmd[[autocmd CursorHold,CursorHoldI *.rs :lua require'lsp_extensions'.inlay_hints{ only_current_line = true }]]
@@ -39,9 +39,13 @@ vim.cmd[[autocmd CursorHold,CursorHoldI *.rs :lua require'lsp_extensions'.inlay_
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	virtual_text = {
 		format=function(diagnostic)
-			return string.format("%s [%s]", diagnostic.message, diagnostic.source)
-		end
+			return string.format("%s: %s [%s]", diagnostic.code, diagnostic.message, diagnostic.source)
+		end,
+		prefix="●"
 	},
+	float = {
+		source="always",
+	}
 })
 
 -- symbols for autocomplete
