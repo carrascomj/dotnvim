@@ -88,7 +88,8 @@ return require("packer").startup({
 		use "maedoc/stan.vim"
 
 		-- colorscheme
-		use("joshdick/onedark.vim")
+		-- use("joshdick/onedark.vim")
+		use "navarasu/onedark.nvim"
 
 		use({ "lewis6991/gitsigns.nvim", opt = true })
 		use({ "terrortylor/nvim-comment", opt = true })

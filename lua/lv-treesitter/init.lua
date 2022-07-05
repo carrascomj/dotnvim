@@ -1,14 +1,6 @@
 require("nvim-treesitter.configs").setup({
 	ensure_installed = "all",
 	highlight = { enable = true, -- false will disable the whole extension
-		custom_captures = {
-			["text.title"] = "Question",
-			["text.reference"] = "Keyword",
-			["text.emphasis"] = "markdownItalic",
-			["text.uri"] = "markdownUrl",
-			["punctuation.special"] = "Keyword",
-			["string.escape"] = "Question",
-		}
 	},
 	-- indent = {enable = true, disable = {"python", "html", "javascript"}},
 	-- TODO seems to be broken

@@ -3,10 +3,29 @@ vim.cmd("let g:nvcode_termcolors=256")
 vim.cmd("colorscheme " .. O.colorscheme)
 require("colorizer").setup()
 
--- Telescope bunting
-vim.cmd([[highlight TelescopeBorder guifg=#494b53]])
-vim.cmd([[highlight TelescopeSelectionCaret guifg=#e5c07b]])
-vim.cmd([[highlight TelescopeSelection gui=bold guibg=#393b43]])
-vim.cmd([[highlight TelescopeMatching guifg=#ca1243]])
-vim.cmd([[highlight TDefhi guibg=#515a6b]])
-vim.cmd("highlight! link TSDefinition TDefhi")
+require('onedark').setup  {
+    -- Main options --
+    style = 'dark', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+    transparent = false,  -- Show/hide background
+    term_colors = false, -- Change terminal color as per the selected theme style
+    ending_tildes = false, -- Show the end-of-buffer tildes. By default they are hidden
+    cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
+
+    -- Change code style ---
+    -- Options are italic, bold, underline, none
+    -- You can configure multiple style with comma seperated, For e.g., keywords = 'italic,bold'
+    code_style = {
+        comments = 'italic',
+        keywords = 'none',
+        functions = 'none',
+        strings = 'none',
+        variables = 'none'
+    },
+
+    -- Plugins Config (overriden in lsp/init.lua anyways) --
+    diagnostics = {
+        darker = true, -- darker colors for diagnostic
+        undercurl = true,   -- use undercurl instead of underline for diagnostics
+        background = false,    -- use background color for virtual text
+    },
+}
