@@ -9,6 +9,7 @@ an executable
 
 -- general
 O.auto_complete = true
+-- O.colorscheme = 'penumbra'
 O.colorscheme = 'onedark'
 -- O.colorscheme = 'tokyonight'
 O.auto_close_tree = 0

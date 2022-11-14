@@ -1,39 +1,21 @@
-local execute = vim.api.nvim_command
-local fn = vim.fn
-
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
-if fn.empty(fn.glob(install_path)) > 0 then
-	execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-	execute("packadd packer.nvim")
+-- Plugins with Packer
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
 
---- Check if a file or directory exists in this path
-local function require_plugin(plugin)
-	local plugin_prefix = fn.stdpath("data") .. "/site/pack/packer/opt/"
-
-	local plugin_path = plugin_prefix .. plugin .. "/"
-	--	print('test '..plugin_path)
-	local ok, err, code = os.rename(plugin_path, plugin_path)
-	if not ok then
-		if code == 13 then
-			-- Permission denied, but it exists
-			return true
-		end
-	end
-	--	print(ok, err, code)
-	if ok then
-		vim.cmd("packadd " .. plugin)
-	end
-	return ok, err, code
-end
-
-vim.cmd("autocmd BufWritePost plugins.lua PackerCompile") -- Auto compile when there are changes in plugins.lua
+local packer_bootstrap = ensure_packer()
 
 return require("packer").startup({
 	function(use)
 		-- Fater plugin loading
-		use("lewis6991/impatient.nvim")
+		-- use("lewis6991/impatient.nvim")
 
 		-- Color
 		use("junegunn/rainbow_parentheses.vim")
@@ -43,17 +25,17 @@ return require("packer").startup({
 		use("wbthomason/packer.nvim")
 
 		-- Lsp
-		use({ "neovim/nvim-lspconfig", opt = true })
-		use({ "kabouzeid/nvim-lspinstall", opt = true })
+		use "neovim/nvim-lspconfig"
+		use "kabouzeid/nvim-lspinstall"
 		use 'nvim-lua/lsp_extensions.nvim'
 
-		-- unit tests
+		-- Unit tests
 		use("vim-test/vim-test")
 
 		-- Telescope
-		use({ "nvim-lua/popup.nvim", opt = true })
-		use({ "nvim-lua/plenary.nvim", opt = true })
-		use({ "nvim-telescope/telescope.nvim", opt = true })
+		use "nvim-lua/popup.nvim"
+		use "nvim-lua/plenary.nvim"
+		use "nvim-telescope/telescope.nvim"
 		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 		-- Harpoon strange choice of the year
 		use("ThePrimeagen/harpoon")
@@ -63,7 +45,6 @@ return require("packer").startup({
 			"weilbith/nvim-code-action-menu",
 			cmd = "CodeActionMenu",
 		})
-		use("kosayoda/nvim-lightbulb")
 
 		-- Autocomplete
 		use("onsails/lspkind-nvim")
@@ -77,32 +58,31 @@ return require("packer").startup({
 		use("hrsh7th/cmp-nvim-lsp")
 		use("windwp/nvim-autopairs")
 
-		-- Teesitter
+		-- Treesitter
 		use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 		use("nvim-treesitter/nvim-treesitter-textobjects")
 		use "nvim-treesitter/nvim-treesitter-refactor"
 		use "RRethy/nvim-treesitter-textsubjects"
-		-- use("nvim-treesitter/nvim-tree-docs")
+		use {"mizlan/iswap.nvim", config=function ()
+			require("iswap").setup()
+		end}
+    use "talbergs/context.nvim"
 		-- use "nvim-treesitter/playground"
 		-- stan syntax
 		use "maedoc/stan.vim"
 
 		-- colorscheme
-		-- use("joshdick/onedark.vim")
 		use "navarasu/onedark.nvim"
 
-		use({ "lewis6991/gitsigns.nvim", opt = true })
-		use({ "terrortylor/nvim-comment", opt = true })
+		use { "lewis6991/gitsigns.nvim", tag ="v0.5" }
+		use({ "terrortylor/nvim-comment" })
 
 		-- Surround
 		use("tpope/vim-surround")
-		use { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins' }
 
-		-- Status Line and Bufferline
-		-- use{"dsych/galaxyline.nvim", commit="586ed3b6c8f0e066606f6b621b0b34bdb1c9fe57", branch="bugfix/diagnostics"}
+		-- Status Line
     use "NTBBloodbath/galaxyline.nvim"
-		-- use("romgrk/barbar.nvim")
-		use({ "kyazdani42/nvim-web-devicons", opt = true })
+		use "nvim-tree/nvim-web-devicons"
 
 		-- weird csv stuff
 		use("chrisbra/csv.vim")
@@ -116,7 +96,6 @@ return require("packer").startup({
 			end
 		}
 
-		-- SSH: like ratom but more neo and more vim
 		use {
 			'chipsenkbeil/distant.nvim',
 			config = function()
@@ -138,22 +117,17 @@ return require("packer").startup({
 			end
 		}
 
-		require_plugin("nvim-lspconfig")
-		require_plugin("nvim-lspinstall")
-		require_plugin("popup.nvim")
-		require_plugin("plenary.nvim")
-		require_plugin("telescope.nvim")
-		require_plugin("nvim-dap")
-		-- require_plugin("nvim-compe")
-		-- require_plugin("vim-vsnip")
-		require_plugin("nvim-autopairs")
-		require_plugin("nvim-treesitter")
-		require_plugin("nvim-web-devicons")
-		require_plugin("gitsigns.nvim")
-		require_plugin("nvim-comment")
-		-- require_plugin("nvim-bqf")
-		require_plugin("galaxyline.nvim")
-		-- require_plugin("barbar.nvim")
+		use({
+			"glepnir/lspsaga.nvim",
+			branch = "main",
+			config = function()
+					local saga = require("lspsaga")
+					saga.init_lsp_saga()
+			end,
+		})
+  	if packer_bootstrap then
+    	require('packer').sync()
+  	end
 	end,
 	compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
 })

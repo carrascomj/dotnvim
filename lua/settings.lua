@@ -6,6 +6,7 @@ vim.cmd("set nohlsearch") -- Don't pollute the screen with yellow (/)
 vim.cmd("set noswapfile")
 -- vim.cmd('set smarttab')
 vim.g.tokyonight_style = "storm"
+vim.cmd("set scrolloff=3")
 vim.go.termguicolors = true -- set term giu colors most terminals support this
 vim.o.hidden = O.hidden_files -- Required to keep multiple buffers open multiple buffers
 vim.o.updatetime = 300 -- Faster completion
@@ -83,3 +84,11 @@ vim.o.guifont = "FiraCode Nerd Font:h17"
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- Don't show the dumb matching stuff.
 vim.opt.shortmess:append("c")
+
+vim.cmd([[
+augroup vimrc-remember-cursor-position  
+    autocmd!  
+    autocmd BufReadPost \* if line("'\\"") > 1 && line("'\\"") <= line("$") | exe "normal! g`\"" | call timer\_start(1, {tid -> execute("normal! zz")})  | endif  
+augroup END  
+]])
+

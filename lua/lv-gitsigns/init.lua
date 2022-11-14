@@ -14,7 +14,22 @@ require("gitsigns").setup({
 		noremap = true,
 		buffer = true,
 		["n gt"] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'" },
+		["n gT"] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'" },
 	},
+	on_attach = function(bufnr)
+		local gs = package.loaded.gitsigns
+
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+		-- toggle signs on keymap
+		map("n", "<C-g>", function()
+				local show_numhl = gs.toggle_numhl()
+        gs.toggle_signs(show_numhl)
+		end)
+	end,
 	watch_gitdir = {
 		interval = 1000,
 	},
