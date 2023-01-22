@@ -19,7 +19,11 @@ return require("packer").startup({
 
 		-- Color
 		use("junegunn/rainbow_parentheses.vim")
-		use("norcalli/nvim-colorizer.lua")
+		use{ "uga-rosa/ccc.nvim", config = function ()
+			vim.opt.termguicolors = true
+			require"ccc".setup { highlighter = { auto_enable = true } }
+		end }
+		-- use("norcalli/nvim-colorizer.lua")
 
 		-- Packer can manage itself as an optional plugin
 		use("wbthomason/packer.nvim")
@@ -62,7 +66,6 @@ return require("packer").startup({
 		use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 		use("nvim-treesitter/nvim-treesitter-textobjects")
 		use "nvim-treesitter/nvim-treesitter-refactor"
-		use "RRethy/nvim-treesitter-textsubjects"
 		use {"mizlan/iswap.nvim", config=function ()
 			require("iswap").setup()
 		end}
@@ -98,23 +101,18 @@ return require("packer").startup({
 
 		use {
 			'chipsenkbeil/distant.nvim',
-			config = function()
-				require('distant').setup {
-					-- Applies Chip's personal settings to every machine you connect to
-					--
-					-- 1. Ensures that distant servers terminate with no connections
-					-- 2. Provides navigation bindings for remote directories
-					-- 3. Provides keybinding to jump into a remote file's parent directory
-					require('distant').setup {
-							['*'] = vim.tbl_deep_extend('force', require('distant.settings').chip_default(), {
-									mode = 'ssh',
-									ssh = {
-										identity_files = { '/home/georg/.ssh/qmcm01_key.pem' },
-									}
-							})
-					}
-				}
-			end
+			branch = "v0.2",
+config = function()
+    require('distant').setup {
+      -- Applies Chip's personal settings to every machine you connect to
+      --
+      -- 1. Ensures that distant servers terminate with no connections
+      -- 2. Provides navigation bindings for remote directories
+      -- 3. Provides keybinding to jump into a remote file's parent directory
+			ssh = { ssh_identity_file = {'/home/georg/.ssh/qmcm01_key.pem' }},
+			["*"] = {dir = { mappings = { ['<Return>'] = require('distant.nav.actions').edit } }}
+    }
+  end
 		}
 
 		use({

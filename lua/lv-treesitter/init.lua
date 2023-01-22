@@ -20,6 +20,8 @@ require("nvim-treesitter.configs").setup({
 				["ic"] = "@class.inner",
 				["ab"] = "@block.outer",
 				["ib"] = "@block.inner",
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
 			},
 
 		},
@@ -43,21 +45,6 @@ require("nvim-treesitter.configs").setup({
 			},
 		},
 	},
-	textsubjects = {
-        enable = true,
-        prev_selection = ',', -- (Optional) keymap to select the previous selection
-        keymaps = {
-            ['af'] = 'textsubjects-container-outer',
-            ['if'] = 'textsubjects-container-inner',
-        },
-    }
-	-- add treesitter-powered docs
-	-- tree_docs = {
-	-- 	enable = true,
-	-- 	keymaps = {
-	-- 		doc_node_at_cursor = "<leader>d"
-	-- 	}
-	-- }
 })
 
 -- recover rst python docs

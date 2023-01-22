@@ -30,6 +30,7 @@ vim.keymap.set(
 )
 vim.api.nvim_set_keymap("", "<leader>g", [[:Telescope grep_string<CR>]], { noremap = false })
 vim.api.nvim_set_keymap("n", "gr", ":Telescope lsp_references<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>F", ":lua require'telescope.builtin'.find_files({cwd=require'telescope.utils'.buffer_dir()})<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-f>", [[<Cmd>lua vim.lsp.buf.format{ async=True }<CR>]], { noremap = false, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>q", ":CodeActionMenu<CR>", { noremap = true, silent = false })
 -- test suite, quit terminal (C-\ C-w) and come back to editing window (C-w w)
@@ -37,6 +38,10 @@ vim.api.nvim_set_keymap("n", "<leader>s", [[:TestSuite<CR><C-\><C-n><C-w>w]], { 
 vim.api.nvim_set_keymap("n", "<leader>a", [[:TestFile<CR><C-\><C-n><C-w>w]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>x", [[<C-w>w:bd!<CR>]], { noremap = true, silent = false })
 vim.api.nvim_set_keymap("n", "<leader>n", [[:ISwapWith<CR>]], { noremap = true, silent = false })
+-- run cargo in vte
+vim.api.nvim_set_keymap("n", "<leader>r", [[:vs term://cargo r<CR><C-w>w]], { noremap = true, silent = false })
+vim.api.nvim_set_keymap("n", "<leader>b", [[:vs term://cargo b<CR><C-w>w]], { noremap = true, silent = false })
+vim.api.nvim_set_keymap("n", "<leader>c", [[:vs term://cargo clippy<CR><C-w>w]], { noremap = true, silent = false })
 
 -- harpoon: clear list and mark current file
 vim.keymap.set(
@@ -75,4 +80,5 @@ vim.cmd('inoremap <expr> <c-k> ("\\<C-p>")')
 -- vim.api.nvim_set_keymap("n", "<leader>ro", [[:MagmaShowOutput<CR>]], { noremap = true, silent = true })
 
 -- Distant
-vim.api.nvim_set_keymap("n", "<leader>ø", ":DistantLaunch 10.75.0.72 ssh.user=jorge<CR>:DistantOpen /home/jorge/", { noremap=true, silent=false})
+vim.api.nvim_set_keymap("n", "<leader>ø", ":DistantConnect ssh://jorge@10.75.0.72 <CR>:DistantOpen /home/jorge/", { noremap=true, silent=false})
+vim.api.nvim_set_keymap("n", "<leader>æ", ":DistantConnect ssh://jorge@10.75.3.55 <CR>:DistantOpen /home/jorge/", { noremap=true, silent=false})

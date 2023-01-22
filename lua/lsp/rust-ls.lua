@@ -29,6 +29,7 @@ require("lspconfig").rust_analyzer.setup({
 			},
 			checkOnSave = {
 				command = "clippy",
+				-- extraArgs = "--target wasm32-unknown-unknown",
 			},
 		},
 	},

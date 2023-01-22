@@ -13,6 +13,15 @@ vim.cmd("highlight! link DiagnosticVirtualTextHint VHint")
 vim.cmd("highlight! link DiagnosticVirtualTextInfo VInfo")
 vim.cmd("highlight! link DiagnosticUnderlineHint HHint")
 vim.cmd("highlight! link DiagnosticHint VHint")
+-- make lspsaga borders less aggresive
+vim.cmd[[
+highlight link LspSagaDiagnosticsBorder VHint
+highlight link LspSagaHoverBorder VHint
+highlight link LspSagaSignatureHelpBorder VHint
+highlight link LspSagaBorderTitle VHint
+highlight link LSOutlinePreviewBorder VHint
+highlight link DefinitionBorder VHint
+]]
 
 vim.fn.sign_define(
 	"DiagnosticSignError",

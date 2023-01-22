@@ -1,7 +1,7 @@
 vim.cmd("let g:nvcode_termcolors=256")
 
 vim.cmd("colorscheme " .. O.colorscheme)
-require("colorizer").setup()
+-- require("colorizer").setup()
 
 require('onedark').setup  {
     -- Main options --
@@ -28,3 +28,4 @@ require('onedark').setup  {
         background = false,    -- use background color for virtual text
     },
 }
+
