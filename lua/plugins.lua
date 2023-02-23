@@ -22,13 +22,13 @@ return require("lazy").setup({
 		{ "uga-rosa/ccc.nvim", config = function ()
 			vim.opt.termguicolors = true
 			require"ccc".setup { highlighter = { auto_enable = true } }
-		end, lazy=true},
-		{"wbthomason/packer.nvim"},
+		end, lazy=false},
 
 		-- Lsp
 		{"neovim/nvim-lspconfig"},
 		{"kabouzeid/nvim-lspinstall"},
 		{'nvim-lua/lsp_extensions.nvim'},
+		{'github/copilot.vim'},
 
 		-- Unit tests
 		{"vim-test/vim-test"},
@@ -61,12 +61,10 @@ return require("lazy").setup({
 
 		-- Treesitter
 		{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate", lazy=false},
-		{"nvim-treesitter/nvim-treesitter-textobjects", lazy=true},
-		{"nvim-treesitter/nvim-treesitter-refactor"},
+		{"nvim-treesitter/nvim-treesitter-textobjects"},
 		{"mizlan/iswap.nvim", config=function ()
 			require("iswap").setup()
 		end},
-    {"talbergs/context.nvim", lazy=true},
 		-- stan syntax
 		{"maedoc/stan.vim"},
 
@@ -117,7 +115,14 @@ return require("lazy").setup({
 			branch = "main",
 			config = function()
 					local saga = require("lspsaga")
-					saga.setup()
-			end,
+					saga.setup({ui = {
+						border ="single",
+						colors = {
+							normal_bg = "NONE",
+
+							title_bg = "NONE"
+				}}})
+				end,
+			event = "BufRead",
 		}
 })

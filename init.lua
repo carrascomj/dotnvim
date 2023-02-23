@@ -1,5 +1,5 @@
 vim.g.mapleader = ' '
--- require('impatient')
+
 
 require('plugins')
 require('lv-globals')

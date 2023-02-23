@@ -5,7 +5,7 @@ if not lspconfig.foo_lsp then
 	configs.foo_lsp = {
 		default_config = {
 			cmd = { [[vale --config="$VALE_CONFIG/vale.ini" --output JSON]] },
-			filetypes = { "markdown", "text" },
+			filetypes = { "markdown", "text", "latex" },
 			root_dir = function(fname)
 				return lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
 			end,
