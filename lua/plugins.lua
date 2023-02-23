@@ -89,7 +89,8 @@ return require("lazy").setup({
 			require("null-ls").setup({
 				debug=true,
 				sources = {
-					require("null-ls").builtins.diagnostics.write_good,
+					require("null-ls").builtins.diagnostics.write_good.with({filetypes={"markdown", "tex", "text"}}),
+					require("null-ls").builtins.formatting.black.with({filetypes={"python"}}),
 				}
 			})
 			end
