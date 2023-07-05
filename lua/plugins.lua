@@ -66,7 +66,7 @@ return require("lazy").setup({
 			require("iswap").setup()
 		end},
 		-- stan syntax
-		{"maedoc/stan.vim"},
+		{"maedoc/stan.vim", lazy=false},
 
 		-- colorscheme
 		{"navarasu/onedark.nvim", lazy=false},
@@ -81,18 +81,53 @@ return require("lazy").setup({
     {"NTBBloodbath/galaxyline.nvim"},
 		{"nvim-tree/nvim-web-devicons"},
 
+		-- Why
+		{'edluffy/hologram.nvim', config=function()
+	require('hologram').setup{
+    auto_display = true -- WIP automatic markdown image display, may be prone to breaking
+}end},
+
 		-- weird csv stuff
 		{"chrisbra/csv.vim"},
 		{"jose-elias-alvarez/null-ls.nvim", config=function ()
 			require("null-ls").setup({
 				debug=true,
 				sources = {
-					require("null-ls").builtins.diagnostics.write_good.with({filetypes={"markdown", "tex", "text"}}),
+					-- require("null-ls").builtins.diagnostics.write_good.with({filetypes={"markdown", "tex", "text"}}),
+					-- require("null-ls").builtins.diagnostics.vale,
 					require("null-ls").builtins.formatting.black.with({filetypes={"python"}}),
-				}
+				},
+				default_timeout = 20000,
 			})
 			end
 		},
+
+		{"quarto-dev/quarto-nvim", config=function()
+			require'quarto'.setup{
+			  debug = false,
+			  closePreviewOnExit = true,
+			  lspFeatures = {
+			    enabled = true,
+			    languages = { 'r', 'python', 'julia', 'bash' },
+			    chunks = 'curly', -- 'curly' or 'all'
+			    diagnostics = {
+			      enabled = true,
+			      triggers = { "BufWritePost" }
+			    },
+			    completion = {
+			      enabled = true,
+			    },
+			  },
+			  keymap = {
+			    hover = 'K',
+			    definition = 'gd',
+			    rename = '<leader>lR',
+			    references = 'gr',
+			  }
+			}
+		end,
+	  dependencies =  {"jmbuhr/otter.nvim", "jpalardy/vim-slime"},
+	},
 
 		{
 			'chipsenkbeil/distant.nvim',

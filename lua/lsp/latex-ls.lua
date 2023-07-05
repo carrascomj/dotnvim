@@ -4,8 +4,8 @@ require("lspconfig").texlab.setup({
 	settings = {
 		texlab = {
 			build = {
-				onSave = true;
-			},
+        onSave = true,
+      },
 			forwardSearch = {
 				executable = "zathura",
 				args = {"--synctex-forward", "%l:1:%f", "%p"},

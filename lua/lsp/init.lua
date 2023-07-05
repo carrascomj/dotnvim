@@ -38,11 +38,11 @@ vim.api.nvim_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", 
 -- vim.api.nvim_set_keymap('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 -- vim.api.nvim_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
 vim.api.nvim_set_keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
+vim.api.nvim_set_keymap("n", "gN", "<cmd>Lspsaga rename<CR>", opts)
 -- vim.api.nvim_set_keymap("n", "gB", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 -- vim.api.nvim_set_keymap("n", "gb", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 vim.api.nvim_set_keymap("n", "gB", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
 vim.api.nvim_set_keymap("n", "gb", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
--- Only jump to error
 -- vim.api.nvim_set_keymap("n", "gv", [[<cmd>lua require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })<CR>]], { silent = true })
 vim.keymap.set("n", "gv", function() require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR }) end, { silent = true })
 -- vim.api.nvim_set_keymap("n", ";", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)

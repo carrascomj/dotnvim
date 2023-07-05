@@ -49,7 +49,7 @@ require("nvim-treesitter.configs").setup({
 
 -- recover rst python docs
 -- from https://github.com/nvim-treesitter/nvim-treesitter/pull/2168 
-require("vim.treesitter.query").set_query("python", "injections", [[
+require("vim.treesitter.query").set("python", "injections", [[
 ((call
   function: (attribute
 	  object: (identifier) @_re)

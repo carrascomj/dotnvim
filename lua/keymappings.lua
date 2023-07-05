@@ -80,5 +80,6 @@ vim.cmd('inoremap <expr> <c-k> ("\\<C-p>")')
 -- vim.api.nvim_set_keymap("n", "<leader>ro", [[:MagmaShowOutput<CR>]], { noremap = true, silent = true })
 
 -- Distant
-vim.api.nvim_set_keymap("n", "<leader>ø", ":DistantConnect ssh://jorge@10.75.0.72 <CR>:DistantOpen /home/jorge/", { noremap=true, silent=false})
+vim.api.nvim_set_keymap("n", "<leader>v", ":DistantConnect ssh://jorge@10.75.0.72 <CR>:DistantOpen /home/jorge/", { noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<leader>æ", ":DistantConnect ssh://jorge@10.75.3.55 <CR>:DistantOpen /home/jorge/", { noremap=true, silent=false})
+vim.api.nvim_set_keymap("n", "<leader>ø", ":DistantConnect ssh://jcamu@10.66.11.49 <CR>:DistantOpen /home/jcamu/", { noremap=true, silent=false})

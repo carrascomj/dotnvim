@@ -15,6 +15,7 @@ require('lv-telescope')
 require('lv-gitsigns')
 require('lv-autopairs')
 require('lv-treesitter')
+require('quarto-config')
 require('harp')
 
 -- LSP
