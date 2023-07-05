@@ -159,5 +159,22 @@ return require("lazy").setup({
 				}}})
 				end,
 			event = "BufRead",
-		}
+		},
+		{
+				'lukas-reineke/headlines.nvim',
+				dependencies = "nvim-treesitter/nvim-treesitter",
+				config = function()
+					require("headlines").setup {
+						quarto = {
+							query = vim.treesitter.query.parse(
+								"markdown",
+								[[
+										(fenced_code_block) @codeblock
+								]]),
+							codeblock_highlight = "CodeBlockQuarto",
+							treesitter_language = "markdown",
+						},
+					}
+				end
+			}
 })

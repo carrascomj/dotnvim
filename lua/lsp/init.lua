@@ -22,6 +22,8 @@ highlight link LspSagaBorderTitle VHint
 highlight link LSOutlinePreviewBorder VHint
 highlight link DefinitionBorder VHint
 ]]
+-- for quarto
+vim.cmd([[highlight! CodeBlockQuarto guibg='#23262d']])
 
 vim.fn.sign_define(
 	"DiagnosticSignError",
@@ -41,10 +43,10 @@ vim.api.nvim_set_keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
 vim.api.nvim_set_keymap("n", "gN", "<cmd>Lspsaga rename<CR>", opts)
 -- vim.api.nvim_set_keymap("n", "gB", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 -- vim.api.nvim_set_keymap("n", "gb", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-vim.api.nvim_set_keymap("n", "gB", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
-vim.api.nvim_set_keymap("n", "gb", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
+vim.api.nvim_set_keymap("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
+vim.api.nvim_set_keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 -- vim.api.nvim_set_keymap("n", "gv", [[<cmd>lua require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })<CR>]], { silent = true })
-vim.keymap.set("n", "gv", function() require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR }) end, { silent = true })
+vim.keymap.set("n", "]D", function() require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR }) end, { silent = true })
 -- vim.api.nvim_set_keymap("n", ";", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 vim.api.nvim_set_keymap("n", ";", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
 vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')

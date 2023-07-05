@@ -12,6 +12,7 @@
   "galaxyline.nvim": { "branch": "main", "commit": "4d4f5fc8e20a10824117e5beea7ec6e445466a8f" },
   "gitsigns.nvim": { "branch": "main", "commit": "d7e0bcbe45bd9d5d106a7b2e11dc15917d272c7a" },
   "harpoon": { "branch": "master", "commit": "21f4c47c6803d64ddb934a5b314dcb1b8e7365dc" },
+  "headlines.nvim": { "branch": "master", "commit": "ddef41b2664f0ce25fe76520d708e2dc9dfebd70" },
   "hologram.nvim": { "branch": "main", "commit": "f5194f71ec1578d91b2e3119ff08e574e2eab542" },
   "iswap.nvim": { "branch": "master", "commit": "8213a12857de8d757311b7edc0bf1578e9a58b27" },
   "lazy.nvim": { "branch": "main", "commit": "f8611632d0f9c6818e8eb54f9bcd1dad122b5a7f" },
