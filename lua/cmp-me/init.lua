@@ -2,6 +2,10 @@ local lspkind = require("lspkind")
 lspkind.init()
 local cmp = require("cmp")
 
+local feedkey = function(key, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+end
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -16,13 +20,21 @@ cmp.setup({
 		end,
 	},
 	mapping = {
-		["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+		-- ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<C-n>"] = cmp.mapping(function(fallback)
+			-- jump to next item in the completion menu or jump to position on snippet.
+			if cmp.visible() then
+				cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+			elseif vim.fn["vsnip#available"](1) == 1 then
+        feedkey("<Plug>(vsnip-expand-or-jump)", "")
+			else fallback()
+			end
+		end),
 		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
 		["<C-d>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-e>"] = cmp.mapping.close(),
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		["<C-e>"] = cmp.mapping.confirm({select = true}),
 	},
 	formatting = {
 		-- Youtube: How to set up nice formatting for your sources.
@@ -56,5 +68,7 @@ cmp.setup({
 
 		{ name = "path" },
 		{ name = "buffer" },
+	  -- For quarto
+		{ name = "otter" },
 	},
 })
