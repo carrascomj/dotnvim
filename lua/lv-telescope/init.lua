@@ -79,7 +79,6 @@ require("telescope").setup({
 		},
 	},
 })
-require("telescope").load_extension("fzf")
 
 -- Insert a line and close the Telescope window
 local function insert_line_with(line, prompt_bufnr, mode)

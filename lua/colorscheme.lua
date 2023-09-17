@@ -29,3 +29,7 @@ require('onedark').setup  {
     },
 }
 
+vim.cmd[[hi SignColumn guibg=NONE cterm=NONE term=NONE]]
+vim.cmd[[hi Normal guibg=NONE cterm=NONE term=NONE]]
+vim.cmd[[hi EndOfBuffer guibg=NONE cterm=NONE term=NONE]]
+

@@ -1,5 +1,5 @@
 require("nvim-treesitter.configs").setup({
-	ensure_installed = {"python", "rust", "c", "cpp", "lua", "toml", "markdown", "latex", "rst", "html", "javascript", "bibtex", "css", "markdown_inline"},
+	ensure_installed = {"python", "rust", "c", "cpp", "lua", "toml", "markdown", "latex", "rst", "html", "javascript", "bibtex", "css", "markdown_inline", "hypr"},
 	highlight = { enable = true, -- false will disable the whole extension
 	},
 	-- indent = {enable = true, disable = {"python", "html", "javascript"}},
@@ -46,6 +46,16 @@ require("nvim-treesitter.configs").setup({
 		},
 	},
 })
+
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.hypr = {
+  install_info = {
+    url = "https://github.com/luckasRanarison/tree-sitter-hypr",
+    files = { "src/parser.c" },
+    branch = "master",
+  },
+  filetype = "hypr",
+}
 
 -- recover rst python docs
 -- from https://github.com/nvim-treesitter/nvim-treesitter/pull/2168 

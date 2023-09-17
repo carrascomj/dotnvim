@@ -37,7 +37,6 @@ return require("lazy").setup({
 		{"nvim-lua/popup.nvim"},
 		{"nvim-lua/plenary.nvim"},
 		{"nvim-telescope/telescope.nvim"},
-		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		-- Harpoon strange choice of the year
 		{"ThePrimeagen/harpoon"},
 
@@ -62,6 +61,7 @@ return require("lazy").setup({
 		-- Treesitter
 		{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate", lazy=false},
 		{"nvim-treesitter/nvim-treesitter-textobjects"},
+		{ "luckasRanarison/tree-sitter-hypr" },
 		{"mizlan/iswap.nvim", config=function ()
 			require("iswap").setup()
 		end},
